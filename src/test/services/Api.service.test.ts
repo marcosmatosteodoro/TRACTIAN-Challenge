@@ -26,7 +26,9 @@ describe('Api', () => {
       { id: '2', name: 'Company 2' },
     ];
 
-    mock.onGet('https://fake-api.tractian.com/news/companies').reply(200, companiesData);
+    mock
+      .onGet('https://fake-api.tractian.com/news/companies')
+      .reply(200, companiesData);
 
     const companies = await api.companies();
 
@@ -39,7 +41,9 @@ describe('Api', () => {
       { id: '2', name: 'Location 2', parentId: '1' },
     ];
 
-    mock.onGet('https://fake-api.tractian.com/companies/1/locations').reply(200, locationsData);
+    mock
+      .onGet('https://fake-api.tractian.com/companies/1/locations')
+      .reply(200, locationsData);
 
     const locations = await api.locations('1');
 
@@ -48,11 +52,27 @@ describe('Api', () => {
 
   it('should fetch assets', async () => {
     const assetsData: Assets[] = [
-      { id: '1', name: 'Asset 1', locationId: '1', parentId: null, sensorType: 'energy', status: 'operating' },
-      { id: '2', name: 'Asset 2', locationId: '1', parentId: '1', sensorType: 'vibration', status: 'alert' },
+      {
+        id: '1',
+        name: 'Asset 1',
+        locationId: '1',
+        parentId: null,
+        sensorType: 'energy',
+        status: 'operating',
+      },
+      {
+        id: '2',
+        name: 'Asset 2',
+        locationId: '1',
+        parentId: '1',
+        sensorType: 'vibration',
+        status: 'alert',
+      },
     ];
 
-    mock.onGet('https://fake-api.tractian.com/companies/1/assets').reply(200, assetsData);
+    mock
+      .onGet('https://fake-api.tractian.com/companies/1/assets')
+      .reply(200, assetsData);
 
     const assets = await api.assets('1');
 
@@ -62,6 +82,8 @@ describe('Api', () => {
   it('should handle GET request failure', async () => {
     mock.onGet('https://fake-api.tractian.com/news/companies').reply(500);
 
-    await expect(api.companies()).rejects.toThrow('GET request to /news/companies failed');
+    await expect(api.companies()).rejects.toThrow(
+      'GET request to /news/companies failed',
+    );
   });
 });
