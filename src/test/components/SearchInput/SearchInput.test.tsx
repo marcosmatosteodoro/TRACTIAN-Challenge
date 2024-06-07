@@ -3,7 +3,7 @@ import { SearchInput } from '../../../components';
 
 describe('SearchInput component', () => {
   it('should render the SearchInput component with placeholder', () => {
-    render(<SearchInput onChange={() => {}} />);
+    render(<SearchInput change={() => {}} />);
 
     const searchInputElement = screen.getByPlaceholderText(
       'Buscar Ativo ou Local',

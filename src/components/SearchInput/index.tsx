@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Box, Flex, Input } from '@chakra-ui/react';
 import { SearchIcon } from '../icons';
