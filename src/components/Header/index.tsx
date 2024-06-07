@@ -5,8 +5,8 @@ import { CompanyButton, LogoIcon } from '../';
 import { CompanyState } from '../../domain';
 
 type HeaderProps = {
-  companies: CompanyState[]
-}
+  companies: CompanyState[];
+};
 
 export const Header = ({ companies }: HeaderProps) => {
   return (
@@ -25,11 +25,14 @@ export const Header = ({ companies }: HeaderProps) => {
 
       <Flex gap={'10px'}>
         {companies.map((company) => (
-          <CompanyButton key={company.id} active={company.current} data-testid="company-button">
+          <CompanyButton
+            key={company.id}
+            active={company.current}
+            data-testid="company-button"
+          >
             {company.name}
           </CompanyButton>
         ))}
-
       </Flex>
     </Flex>
   );
