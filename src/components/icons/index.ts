@@ -1,3 +1,4 @@
+export * from './bolt';
 export * from './codepen';
 export * from './cubeOutline';
 export * from './elipse';
