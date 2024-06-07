@@ -31,7 +31,7 @@ export const CompanyButton = ({
       }
       data-testid="company-button"
     >
-      {children}
+      {children} Unit
     </Button>
   );
 };
