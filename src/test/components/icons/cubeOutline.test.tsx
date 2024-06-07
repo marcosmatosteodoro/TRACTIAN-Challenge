@@ -27,7 +27,11 @@ describe('CubeOutlineIcon component', () => {
   it('should accept and apply custom width and height', () => {
     render(
       <ChakraProvider>
-        <CubeOutlineIcon data-testid="cube-outline-icon" width="25px" height="25px" />
+        <CubeOutlineIcon
+          data-testid="cube-outline-icon"
+          width="25px"
+          height="25px"
+        />
       </ChakraProvider>,
     );
     const svgElement = screen.getByTestId('cube-outline-icon');

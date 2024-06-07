@@ -27,7 +27,11 @@ describe('WifiTetheringIcon component', () => {
   it('should accept and apply custom width and height', () => {
     render(
       <ChakraProvider>
-        <WifiTetheringIcon data-testid="wifi-tethering-icon" width="24px" height="22px" />
+        <WifiTetheringIcon
+          data-testid="wifi-tethering-icon"
+          width="24px"
+          height="22px"
+        />
       </ChakraProvider>,
     );
     const svgElement = screen.getByTestId('wifi-tethering-icon');

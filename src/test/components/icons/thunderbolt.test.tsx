@@ -27,7 +27,11 @@ describe('ThunderboltIcon component', () => {
   it('should accept and apply custom width and height', () => {
     render(
       <ChakraProvider>
-        <ThunderboltIcon data-testid="thunderbolt-icon" width="18px" height="18px" />
+        <ThunderboltIcon
+          data-testid="thunderbolt-icon"
+          width="18px"
+          height="18px"
+        />
       </ChakraProvider>,
     );
     const svgElement = screen.getByTestId('thunderbolt-icon');

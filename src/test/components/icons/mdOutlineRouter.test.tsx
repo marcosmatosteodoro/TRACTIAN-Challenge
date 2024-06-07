@@ -27,7 +27,11 @@ describe('MdOutlineRouterIcon component', () => {
   it('should accept and apply custom width and height', () => {
     render(
       <ChakraProvider>
-        <MdOutlineRouterIcon data-testid="router-icon" width="18px" height="18px" />
+        <MdOutlineRouterIcon
+          data-testid="router-icon"
+          width="18px"
+          height="18px"
+        />
       </ChakraProvider>,
     );
     const svgElement = screen.getByTestId('router-icon');
