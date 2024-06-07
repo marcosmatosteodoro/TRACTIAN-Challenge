@@ -10,6 +10,7 @@ export const WifiTetheringIcon = (props: ChakraProps) => {
       viewBox="0 0 18 15"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid="wifiTethering-icon"
       {...props}
     >
       <path

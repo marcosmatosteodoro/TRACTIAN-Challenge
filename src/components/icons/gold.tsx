@@ -5,6 +5,7 @@ import { chakra, ChakraProps } from '@chakra-ui/react';
 export const GoldIcon = (props: ChakraProps) => {
   return (
     <chakra.svg
+      data-testid="gold-icon"
       width="14"
       height="10"
       viewBox="0 0 14 10"

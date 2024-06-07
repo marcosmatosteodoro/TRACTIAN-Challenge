@@ -10,6 +10,7 @@ export const MdOutlineRouterIcon = (props: ChakraProps) => {
       viewBox="0 0 15 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid="mdOutilineRouter-icon"
       {...props}
     >
       <path

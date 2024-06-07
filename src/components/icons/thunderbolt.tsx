@@ -10,6 +10,7 @@ export const ThunderboltIcon = (props: ChakraProps) => {
       viewBox="0 0 14 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid="thunderbolt-icon"
       {...props}
     >
       <path
