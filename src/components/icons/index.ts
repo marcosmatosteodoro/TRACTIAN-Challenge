@@ -1,5 +1,6 @@
 export * from './codepen';
 export * from './cubeOutline';
+export * from './elipse';
 export * from './gold';
 export * from './info';
 export * from './location';
