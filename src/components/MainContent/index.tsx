@@ -1,25 +1,30 @@
 'use client';
 
-import { Assets, Company, TreeNode } from "@/domain";
-import { Container, Grid } from "@chakra-ui/react";
-import { AssetDetails } from "../AssetDetails";
-import { CardContainer } from "../CardContainer";
-import { Loading } from "../Loading";
-import { RowContainer } from "../RowContainer";
-import { TreeNodeContent } from "../TreeNodeContent";
+import { Assets, Company, TreeNode } from '@/domain';
+import { Container, Grid } from '@chakra-ui/react';
+import { AssetDetails } from '../AssetDetails';
+import { CardContainer } from '../CardContainer';
+import { Loading } from '../Loading';
+import { RowContainer } from '../RowContainer';
+import { TreeNodeContent } from '../TreeNodeContent';
 
 type MainProps = {
   currentCompany: Company;
   currentAsset: Assets;
   changeCurrentAsset: (id: string) => void;
-  treeNode: TreeNode[]
-}
+  treeNode: TreeNode[];
+};
 
-export const MainContent = ({currentCompany, currentAsset, treeNode, changeCurrentAsset}: MainProps) => {
+export const MainContent = ({
+  currentCompany,
+  currentAsset,
+  treeNode,
+  changeCurrentAsset,
+}: MainProps) => {
   return (
     <Container maxW={'1700px'} h={'100%'}>
       <CardContainer>
-        { currentCompany?.id && treeNode?.length > 0 ? (
+        {currentCompany?.id && treeNode?.length > 0 ? (
           <>
             <RowContainer company={currentCompany} />
 
@@ -42,5 +47,5 @@ export const MainContent = ({currentCompany, currentAsset, treeNode, changeCurre
         )}
       </CardContainer>
     </Container>
-  )
-}
+  );
+};

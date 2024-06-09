@@ -8,7 +8,11 @@ type TreeItensProps = {
   currentAsset: Assets;
 };
 
-const renderTreeItems = ({ treeNode, changeCurrentAsset, currentAsset }: TreeItensProps) => {
+const renderTreeItems = ({
+  treeNode,
+  changeCurrentAsset,
+  currentAsset,
+}: TreeItensProps) => {
   const getId = (item: TreeNode) => {
     if (item.location) {
       return item.location.id;
@@ -19,12 +23,26 @@ const renderTreeItems = ({ treeNode, changeCurrentAsset, currentAsset }: TreeIte
   };
 
   return treeNode.map((item) => (
-    <TreeItem key={getId(item)} item={item} changeCurrentAsset={changeCurrentAsset} currentAsset={currentAsset}>
-      {item?.childrens?.length > 0 && renderTreeItems({treeNode: item.childrens, changeCurrentAsset, currentAsset})}
+    <TreeItem
+      key={getId(item)}
+      item={item}
+      changeCurrentAsset={changeCurrentAsset}
+      currentAsset={currentAsset}
+    >
+      {item?.childrens?.length > 0 &&
+        renderTreeItems({
+          treeNode: item.childrens,
+          changeCurrentAsset,
+          currentAsset,
+        })}
     </TreeItem>
   ));
 };
 
 export const TreeItens = (props: TreeItensProps) => {
-  return <Box px={'8px'} py={'10px'}>{renderTreeItems(props)}</Box>;
+  return (
+    <Box px={'8px'} py={'10px'}>
+      {renderTreeItems(props)}
+    </Box>
+  );
 };

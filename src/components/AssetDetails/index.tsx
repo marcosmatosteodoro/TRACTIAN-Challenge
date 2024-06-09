@@ -1,16 +1,15 @@
 'use client';
 
-import { Assets } from "@/domain";
-import { Box } from "@chakra-ui/react";
-import { BoltIcon, ElipseIcon } from "../icons";
-import { AssetDetaillsContent, AssetDetaillsTop } from "./components";
+import { Assets } from '@/domain';
+import { Box } from '@chakra-ui/react';
+import { BoltIcon, ElipseIcon } from '../icons';
+import { AssetDetaillsContent, AssetDetaillsTop } from './components';
 
 type AssetDetailsProps = {
   currentAsset: Assets;
-}
+};
 
-export const AssetDetails = ({currentAsset}: AssetDetailsProps) => {
-
+export const AssetDetails = ({ currentAsset }: AssetDetailsProps) => {
   const choiceStatus = (asset: Assets) => {
     const size = '8px';
 
@@ -48,9 +47,9 @@ export const AssetDetails = ({currentAsset}: AssetDetailsProps) => {
   const statusIcon = choiceStatus(currentAsset);
   return (
     <Box minH={'500px'} p={0} m={0}>
-      <AssetDetaillsTop statusIcon={statusIcon} title={currentAsset?.name}  />
+      <AssetDetaillsTop statusIcon={statusIcon} title={currentAsset?.name} />
 
       <AssetDetaillsContent />
     </Box>
-  )
-}
+  );
+};

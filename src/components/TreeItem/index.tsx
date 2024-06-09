@@ -22,31 +22,48 @@ type ChevronIconProps = {
   childrens: TreeNode['childrens'];
 };
 
-const ChevronIcon = ({isOpen, childrens}: ChevronIconProps) => {
-
+const ChevronIcon = ({ isOpen, childrens }: ChevronIconProps) => {
   if (childrens.length === 0) {
     return <></>;
   }
 
   if (isOpen) {
-    return <ChevronDownIcon aria-label="Toggle children" mr="0" color={'black'} data-testid="toggle-children-button"/>;
+    return (
+      <ChevronDownIcon
+        aria-label="Toggle children"
+        mr="0"
+        color={'black'}
+        data-testid="toggle-children-button"
+      />
+    );
   }
 
-  return <ChevronRightIcon aria-label="Toggle children" mr="0" color={'black'} data-testid="toggle-children-button"/>;
-}
+  return (
+    <ChevronRightIcon
+      aria-label="Toggle children"
+      mr="0"
+      color={'black'}
+      data-testid="toggle-children-button"
+    />
+  );
+};
 
-export const TreeItem = ({ item, children, currentAsset, changeCurrentAsset }: TreeItemProps) => {
+export const TreeItem = ({
+  item,
+  children,
+  currentAsset,
+  changeCurrentAsset,
+}: TreeItemProps) => {
   const { location, asset, childrens, startOpen } = item;
 
   const [isOpen, setIsOpen] = useState(startOpen);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if(item.asset?.id === currentAsset.id) {
+    if (item.asset?.id === currentAsset.id) {
       setIsActive(true);
     }
-  }, [currentAsset, item])
-
+  }, [currentAsset, item]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -125,7 +142,7 @@ export const TreeItem = ({ item, children, currentAsset, changeCurrentAsset }: T
   }
 
   return (
-    <Box >
+    <Box>
       <Button
         alignItems="center"
         onClick={click}
@@ -134,18 +151,18 @@ export const TreeItem = ({ item, children, currentAsset, changeCurrentAsset }: T
         justifyContent={'flex-start'}
         bg={isActive ? 'red' : 'white'}
         _hover={
-          asset && childrens?.length === 0 ? {
-            bg: 'gray.100',
-
-          } : {}
+          asset && childrens?.length === 0
+            ? {
+                bg: 'gray.100',
+              }
+            : {}
         }
       >
         <ChevronIcon isOpen={isOpen} childrens={childrens} />
         {typeIcon}
 
         <Text
-          color={isActive ? 'white': 'black'}
-
+          color={isActive ? 'white' : 'black'}
           px={'4px'}
           fontSize={'14px'}
           fontWeight={400}

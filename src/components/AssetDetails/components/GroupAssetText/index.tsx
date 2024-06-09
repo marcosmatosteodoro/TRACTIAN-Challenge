@@ -1,13 +1,13 @@
 'use client';
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text } from '@chakra-ui/react';
 
 type GroupAssetTextProps = {
   title: string;
   children?: React.ReactNode;
-}
+};
 
-export const GroupAssetText = ({title, children }: GroupAssetTextProps) => {
+export const GroupAssetText = ({ title, children }: GroupAssetTextProps) => {
   return (
     <Box w={'100%'}>
       <Text
@@ -30,5 +30,5 @@ export const GroupAssetText = ({title, children }: GroupAssetTextProps) => {
         {children}
       </Text>
     </Box>
-  )
-}
+  );
+};

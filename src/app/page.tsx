@@ -3,9 +3,7 @@
 import useApi from '@/hooks/useApi.hook';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import {
-  Header, MainContent
-} from '../components';
+import { Header, MainContent } from '../components';
 export default function Home() {
   const {
     bringCompanies,
@@ -52,7 +50,7 @@ export default function Home() {
         />
       </GridItem>
 
-      <GridItem m="8px" p={0} area={'main'} as="main" >
+      <GridItem m="8px" p={0} area={'main'} as="main">
         <MainContent
           changeCurrentAsset={changeCurrentAsset}
           currentAsset={currentAsset}
