@@ -1,7 +1,7 @@
-import { TreeNode } from '@/domain';
+import { Assets, TreeNode } from '@/domain';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, Button, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import {
   BoltIcon,
   CodepenIcon,
@@ -13,18 +13,43 @@ import {
 type TreeItemProps = {
   item: TreeNode;
   children?: React.ReactNode;
+  changeCurrentAsset: (id: string) => void;
+  currentAsset: Assets;
 };
 
-export const TreeItem = ({ item, children }: TreeItemProps) => {
+type ChevronIconProps = {
+  isOpen: boolean;
+  childrens: TreeNode['childrens'];
+};
+
+const ChevronIcon = ({isOpen, childrens}: ChevronIconProps) => {
+
+  if (childrens.length === 0) {
+    return <></>;
+  }
+
+  if (isOpen) {
+    return <ChevronDownIcon aria-label="Toggle children" mr="0" color={'black'} data-testid="toggle-children-button"/>;
+  }
+
+  return <ChevronRightIcon aria-label="Toggle children" mr="0" color={'black'} data-testid="toggle-children-button"/>;
+}
+
+export const TreeItem = ({ item, children, currentAsset, changeCurrentAsset }: TreeItemProps) => {
   const { location, asset, childrens, startOpen } = item;
 
   const [isOpen, setIsOpen] = useState(startOpen);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if(item.asset?.id === currentAsset.id) {
+      setIsActive(true);
+    }
+  }, [currentAsset, item])
+
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
-  };
-  const showAssets = () => {
-    alert('clicado');
   };
 
   const choiceIcon = ({
@@ -81,57 +106,58 @@ export const TreeItem = ({ item, children }: TreeItemProps) => {
     }
   };
 
-  const makeChevronIcon = (childrens: TreeItemProps['item']['childrens']) => {
-    if (childrens.length === 0) {
-      return undefined;
-    } else if (isOpen) {
-      return <ChevronDownIcon />;
-    } else {
-      return <ChevronRightIcon />;
-    }
-  };
-
-  const choicehandleToggle = (
+  const choiceHandleToggle = (
     childrens: TreeItemProps['item']['childrens'],
   ) => {
     if (childrens.length > 0) {
       return handleToggle;
     } else {
-      return showAssets;
+      return () => changeCurrentAsset(asset?.id || '');
     }
   };
 
   const typeIcon = choiceIcon(item);
   const statusIcon = choiceStatus(asset);
-  const chevronIcon = makeChevronIcon(childrens);
-  const click = choicehandleToggle(childrens);
+  const click = choiceHandleToggle(childrens);
 
-  if (!item.hidden) {
+  if (item.hidden) {
     return <></>;
   }
 
   return (
-    <Box>
-      <Flex alignItems="center">
-        <IconButton
-          icon={chevronIcon}
-          onClick={click}
-          size="sm"
-          variant="ghost"
-          aria-label="Toggle children"
-          mr="0"
-          color={'black'}
-          data-testid="toggle-children-button"
-        />
+    <Box >
+      <Button
+        alignItems="center"
+        onClick={click}
+        p={0}
+        w={'full'}
+        justifyContent={'flex-start'}
+        bg={isActive ? 'red' : 'white'}
+        _hover={
+          asset && childrens?.length === 0 ? {
+            bg: 'gray.100',
+
+          } : {}
+        }
+      >
+        <ChevronIcon isOpen={isOpen} childrens={childrens} />
         {typeIcon}
 
-        <Text color={'black'} px={'4px'}>
+        <Text
+          color={isActive ? 'white': 'black'}
+
+          px={'4px'}
+          fontSize={'14px'}
+          fontWeight={400}
+          lineHeight={'22px'}
+          data-testid="tree-item-text"
+        >
           {location && location?.name}
           {asset && asset?.name}
         </Text>
 
         {asset && childrens.length === 0 && statusIcon}
-      </Flex>
+      </Button>
       {isOpen && <Box pl="6">{children}</Box>}
     </Box>
   );

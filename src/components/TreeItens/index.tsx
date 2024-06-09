@@ -1,12 +1,14 @@
-import { TreeNode } from '@/domain';
+import { Assets, TreeNode } from '@/domain';
 import { Box } from '@chakra-ui/react';
 import { TreeItem } from '../TreeItem';
 
 type TreeItensProps = {
   treeNode: TreeNode[];
+  changeCurrentAsset: (id: string) => void;
+  currentAsset: Assets;
 };
 
-const renderTreeItems = (items: TreeNode[]) => {
+const renderTreeItems = ({ treeNode, changeCurrentAsset, currentAsset }: TreeItensProps) => {
   const getId = (item: TreeNode) => {
     if (item.location) {
       return item.location.id;
@@ -16,13 +18,13 @@ const renderTreeItems = (items: TreeNode[]) => {
     return '';
   };
 
-  return items.map((item) => (
-    <TreeItem key={getId(item)} item={item}>
-      {item?.childrens?.length > 0 && renderTreeItems(item.childrens)}
+  return treeNode.map((item) => (
+    <TreeItem key={getId(item)} item={item} changeCurrentAsset={changeCurrentAsset} currentAsset={currentAsset}>
+      {item?.childrens?.length > 0 && renderTreeItems({treeNode: item.childrens, changeCurrentAsset, currentAsset})}
     </TreeItem>
   ));
 };
 
-export const TreeItens = ({ treeNode }: TreeItensProps) => {
-  return <Box>{renderTreeItems(treeNode)}</Box>;
+export const TreeItens = (props: TreeItensProps) => {
+  return <Box px={'8px'} py={'10px'}>{renderTreeItems(props)}</Box>;
 };
