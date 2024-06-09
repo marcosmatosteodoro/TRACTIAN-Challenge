@@ -1,14 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { SecondaryButton } from '../../../components';
 
-
 describe('SecondaryButton', () => {
   test('renders with thunderbolt icon', () => {
     const handleClick = jest.fn();
     render(
       <SecondaryButton icon="thunderbolt" onClick={handleClick}>
         Thunderbolt
-      </SecondaryButton>
+      </SecondaryButton>,
     );
     expect(screen.getByTestId('thunderbolt-icon')).toBeInTheDocument();
   });
@@ -18,7 +17,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" onClick={handleClick}>
         Info
-      </SecondaryButton>
+      </SecondaryButton>,
     );
     expect(screen.getByTestId('info-icon')).toBeInTheDocument();
   });
@@ -28,7 +27,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" onClick={handleClick}>
         Click me
-      </SecondaryButton>
+      </SecondaryButton>,
     );
     const button = screen.getByTestId('secondary-button');
 

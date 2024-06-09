@@ -13,7 +13,7 @@ class Api {
     const baseURL = 'https://fake-api.tractian.com/';
     this.client = axios.create({ baseURL });
     this.endpoins = {
-      companies: () => '/news/companies',
+      companies: () => '/companies',
       locations: (id) => `/companies/${id}/locations`,
       assets: (id) => `/companies/${id}/assets`,
     };

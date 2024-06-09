@@ -2,7 +2,7 @@
 
 import { Company } from '@/domain';
 import { Flex, Text } from '@chakra-ui/react';
-import { InfoIcon, SecondaryButton, ThunderboltIcon } from '../';
+import { SecondaryButton } from '../';
 
 type RowContainerProps = {
   company: Company;
@@ -33,17 +33,11 @@ export const RowContainer = ({ company }: RowContainerProps) => {
       </Flex>
 
       <Flex gap={'8px'}>
-        <SecondaryButton
-          icon={<ThunderboltIcon w={'16px'} h={'16px'} m={0} />}
-          onClick={() => {}}
-        >
+        <SecondaryButton icon={'thunderbolt'} onClick={() => {}}>
           Sensor de Energia
         </SecondaryButton>
 
-        <SecondaryButton
-          icon={<InfoIcon w={'16px'} h={'16px'} m={0} />}
-          onClick={() => {}}
-        >
+        <SecondaryButton icon={'infoIcon'} onClick={() => {}}>
           Critico
         </SecondaryButton>
       </Flex>
