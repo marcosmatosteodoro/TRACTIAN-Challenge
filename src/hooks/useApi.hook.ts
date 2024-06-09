@@ -63,11 +63,7 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
   const bringLocations = async (id: string) => {
     setLocations({ loading: true, error: null, data: {} as Locations[] });
     try {
-      const response = await api.assets(id);
-      const data = response.map((item, index) => ({
-        ...item,
-        current: index === 0,
-      }));
+      const data = await api.locations(id);
 
       updateLocations(data as Locations[]);
       setLocations((prevState) => ({ ...prevState, data: data }));
