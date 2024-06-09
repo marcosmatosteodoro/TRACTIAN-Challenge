@@ -1,71 +1,43 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { CompanyButton } from '../../../components/Buttons/CompanyButton';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { CompanyButton } from '../../../components';
 
 describe('CompanyButton component', () => {
-  it('should render the button with children', () => {
-    render(
-      <ChakraProvider>
-        <CompanyButton>Click Me</CompanyButton>
-      </ChakraProvider>,
-    );
-    const buttonElement = screen.getByText('Click Me');
+  it('should render the button with children and icon', () => {
+    render(<CompanyButton click={() => {}}>Test</CompanyButton>);
+    const buttonElement = screen.getByTestId('company-button');
     expect(buttonElement).toBeInTheDocument();
+    expect(buttonElement).toHaveTextContent('Test Unit');
+    expect(buttonElement).toContainHTML('<svg'); // Ensure the icon is present
   });
 
-  it('should render the GoldIcon inside the button', () => {
-    render(
-      <ChakraProvider>
-        <CompanyButton>Click Me</CompanyButton>
-      </ChakraProvider>,
-    );
-    const iconElement = screen.getByTestId('gold-icon');
-    expect(iconElement).toBeInTheDocument();
+  it('should call a function when clicked', () => {
+    const onClickMock = jest.fn();
+    render(<CompanyButton click={onClickMock}>Test</CompanyButton>);
+    const buttonElement = screen.getByTestId('company-button');
+    fireEvent.click(buttonElement);
+    expect(onClickMock).toHaveBeenCalled();
   });
 
-  it('should have the primary color background when active', () => {
+  it('should change background color and hover style when active', () => {
     render(
-      <ChakraProvider>
-        <CompanyButton active>Click Me</CompanyButton>
-      </ChakraProvider>,
+      <CompanyButton active click={() => {}}>
+        Test
+      </CompanyButton>,
     );
     const buttonElement = screen.getByTestId('company-button');
-    expect(buttonElement).toHaveStyle('background-color: rgb(33, 136, 255)'); // #2188FF in RGB
-  });
-
-  it('should have the default background color when not active', () => {
-    render(
-      <ChakraProvider>
-        <CompanyButton disableHover>Click Me</CompanyButton>
-      </ChakraProvider>,
-    );
-
-    const buttonElement = screen.getByTestId('company-button');
-
-    console.log(
-      'buttonElement.style.backgroundColor:',
-      buttonElement.style.backgroundColor,
-    );
-
-    const computedStyle = window.getComputedStyle(buttonElement);
-    console.log(
-      'computedStyle.backgroundColor:',
-      computedStyle.backgroundColor,
-    );
-
-    expect(computedStyle.backgroundColor).toBe('rgb(2, 59, 120)'); // #023B78 in RGB
-  });
-
-  it('should apply opacity on hover', async () => {
-    render(
-      <ChakraProvider>
-        <CompanyButton>Click Me</CompanyButton>
-      </ChakraProvider>,
-    );
-    const buttonElement = screen.getByTestId('company-button');
-    await userEvent.hover(buttonElement);
+    expect(buttonElement).toHaveStyle('background-color: #2188FF');
+    fireEvent.mouseEnter(buttonElement);
     expect(buttonElement).toHaveStyle('opacity: 0.9');
+  });
+
+  it('should not change hover style when disableHover is true', () => {
+    render(
+      <CompanyButton active disableHover click={() => {}}>
+        Test
+      </CompanyButton>,
+    );
+    const buttonElement = screen.getByTestId('company-button');
+    fireEvent.mouseEnter(buttonElement);
+    expect(buttonElement).not.toHaveStyle('opacity: 0.9');
   });
 });

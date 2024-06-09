@@ -7,11 +7,13 @@ type CompanyButtonProps = {
   children: React.ReactNode;
   active?: boolean;
   disableHover?: boolean;
+  click: () => void;
 };
 
 export const CompanyButton = ({
   children,
   active,
+  click,
   disableHover,
 }: CompanyButtonProps) => {
   const primaryColor = '#2188FF';
@@ -21,6 +23,7 @@ export const CompanyButton = ({
       bg={active === true ? primaryColor : '#023B78'}
       color={'#ffffff'}
       leftIcon={<GoldIcon h={'16px'} w={'16px'} />}
+      onClick={click}
       _hover={
         !disableHover
           ? {
