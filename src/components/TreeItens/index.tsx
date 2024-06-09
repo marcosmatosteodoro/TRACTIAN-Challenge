@@ -1,5 +1,6 @@
 import { Assets, TreeNode } from '@/domain';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { TreeItem } from '../TreeItem';
 
 type TreeItensProps = {
@@ -40,9 +41,31 @@ const renderTreeItems = ({
 };
 
 export const TreeItens = (props: TreeItensProps) => {
+  const [findItem, setFindItem] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (props?.treeNode?.find((item) => item.hidden === false)) {
+      setFindItem(true);
+    } else {
+      setFindItem(false);
+    }
+  }, [props.treeNode]);
+
   return (
     <Box px={'8px'} py={'10px'}>
-      {renderTreeItems(props)}
+      {findItem && renderTreeItems(props)}
+      {!findItem && (
+        <Box>
+          <Text
+            fontSize={'16px'}
+            fontWeight={'400'}
+            lineHeight={'24px'}
+            color={'#88929C'}
+          >
+            No items found
+          </Text>
+        </Box>
+      )}
     </Box>
   );
 };

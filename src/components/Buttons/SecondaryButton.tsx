@@ -16,7 +16,6 @@ export const SecondaryButton = ({
   active,
   onClick,
 }: SecondaryButtonProps) => {
-
   const whiteColor = '#FFFFFF';
   const grayColor = '#77818C';
   const blueColor = '#2188FF';

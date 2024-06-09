@@ -228,7 +228,6 @@ const useTreeNode = ({
 
     if (update && newTreeNode.length > 0) {
       updateTreeNode(newTreeNode);
-      console.log('newTreeNode ', newTreeNode);
     }
 
     return { active: response, data: newTreeNode };
