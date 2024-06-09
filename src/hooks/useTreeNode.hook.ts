@@ -2,24 +2,48 @@
 
 import { AplicationContextType } from '@/context/AplicationContext';
 import { Assets, Locations, TreeNode } from '@/domain';
+import { useState } from 'react';
 
 interface UseTreeNodeReturnType {
+  filterByThunderbolt: () => void;
+  filterByAlert: () => void;
+  filterBySearch: (text: string) => void;
   getTreeNode: () => void;
+  filter: TreeNodeFilters;
 }
 
 type useTreeNodeProps = {
   application: AplicationContextType;
 };
+
+type FindAssetsResponse = {
+  data: TreeNode[];
+  active: boolean;
+};
+
+export type TreeNodeFilters = {
+  thunderbolt: boolean;
+  alert: boolean;
+  search: boolean;
+};
+
 const useTreeNode = ({
   application,
 }: useTreeNodeProps): UseTreeNodeReturnType => {
+  const [filter, setFilters] = useState<TreeNodeFilters>({
+    thunderbolt: false,
+    alert: false,
+    search: false,
+  } as TreeNodeFilters);
+
+  const [searchList, setSearchList] = useState<Assets[]>([] as Assets[]);
   const { treeNode, locations, assets, updateTreeNode } = application;
 
   const getTreeNode = () => {
     updateTreeNode({} as TreeNode[]);
+    setSearchList([] as Assets[]);
 
     const treeNode = buildTreeNode(locations, assets);
-
     updateTreeNode(treeNode as TreeNode[]);
   };
 
@@ -77,6 +101,7 @@ const useTreeNode = ({
 
     function getAssetsTreeNode(locationAssets: Assets[], parentId: boolean) {
       const response = [] as TreeNode[];
+      const newSearchArray = searchList as Assets[];
 
       locationAssets.forEach((asset) => {
         if (
@@ -95,6 +120,8 @@ const useTreeNode = ({
         if (assetsChildrens.length > 0) {
           const assetsTreeNode = getAssetsTreeNode(assetsChildrens, true);
           newChilds = [...newChilds, ...assetsTreeNode];
+        } else if (!searchList.find((search) => search.id === asset.id)) {
+          newSearchArray.push(asset);
         }
 
         const data = buildTreeNode({
@@ -110,6 +137,7 @@ const useTreeNode = ({
         response.push(data);
       });
 
+      setSearchList(newSearchArray);
       return response;
     }
 
@@ -133,8 +161,85 @@ const useTreeNode = ({
     return treeNode;
   };
 
+  const filterByThunderbolt = () => {
+    const list = searchList.filter((asset) => {
+      return asset?.status === 'operating';
+    });
+
+    setFilters({ ...filter, thunderbolt: !filter.thunderbolt, alert: false });
+
+    findAssets({ assets: list, treeNode, update: true });
+  };
+
+  const filterByAlert = () => {
+    const list = searchList.filter((asset) => {
+      return asset?.status === 'alert';
+    });
+
+    setFilters({ ...filter, alert: !filter.alert, thunderbolt: false });
+
+    findAssets({ assets: list, treeNode, update: true });
+  };
+
+  const filterBySearch = (text: string) => {
+    const list = searchList.filter((asset) => {
+      return asset?.name.toLowerCase().includes(text.toLowerCase());
+    });
+
+    setFilters({ search: !filter.search, thunderbolt: false, alert: false });
+
+    findAssets({ assets: list, treeNode, update: true });
+  };
+
+  const findAssets = ({
+    assets,
+    treeNode,
+    update = false,
+  }: {
+    assets: Assets[];
+    treeNode: TreeNode[];
+    update?: boolean;
+  }): FindAssetsResponse => {
+    let response = false;
+
+    const newTreeNode: TreeNode[] = treeNode.map((node: TreeNode) => {
+      if (
+        node.asset &&
+        assets.find(
+          (asset) => asset.id === node.asset?.id && node.childrens.length === 0,
+        )
+      ) {
+        response = true;
+        return { ...node, hidden: false, startOpen: true };
+      }
+
+      if (node.childrens.length > 0) {
+        const { active, data } = findAssets({
+          assets,
+          treeNode: node.childrens,
+          update: false,
+        });
+        response = active;
+        return { ...node, hidden: !active, startOpen: true, childrens: data };
+      }
+
+      return { ...node, hidden: true, startOpen: true };
+    });
+
+    if (update && newTreeNode.length > 0) {
+      updateTreeNode(newTreeNode);
+      console.log('newTreeNode ', newTreeNode);
+    }
+
+    return { active: response, data: newTreeNode };
+  };
+
   return {
     getTreeNode,
+    filterByThunderbolt,
+    filterByAlert,
+    filterBySearch,
+    filter,
   };
 };
 
