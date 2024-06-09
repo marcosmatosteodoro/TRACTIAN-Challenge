@@ -11,7 +11,8 @@ export const Loading = ({ color = 'blue.500', size = 'xl' }: LoadingProps) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      height="100vh"
+      h="100%"
+      maxH={'100vh'}
       data-testid="loading"
     >
       <Spinner size={size} color={color} />

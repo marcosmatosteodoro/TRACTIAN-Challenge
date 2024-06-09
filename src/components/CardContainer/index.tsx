@@ -6,7 +6,7 @@ type CardContainerProps = {
 };
 
 export const CardContainer = ({ children, padding }: CardContainerProps) => (
-  <Container maxW={'1700px'} p={0}>
+  <Container maxW={'1700px'} p={0} h={'100%'}>
     <Card
       borderRadius={'4px'}
       borderWidth={'1px'}
