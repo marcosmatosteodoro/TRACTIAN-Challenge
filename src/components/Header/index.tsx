@@ -1,14 +1,15 @@
 'use client';
 
 import { Box, Flex } from '@chakra-ui/react';
-import { CompanyButton, LogoIcon } from '../';
+import { CompanyButton, Loading, LogoIcon } from '../';
 import { CompanyState } from '../../domain';
 
 type HeaderProps = {
   companies: CompanyState[];
+  changeCurrentCompany: (id: string) => void;
 };
 
-export const Header = ({ companies }: HeaderProps) => {
+export const Header = ({ companies, changeCurrentCompany }: HeaderProps) => {
   return (
     <Flex
       w={'full'}
@@ -24,15 +25,20 @@ export const Header = ({ companies }: HeaderProps) => {
       </Box>
 
       <Flex gap={'10px'}>
-        {companies.map((company) => (
-          <CompanyButton
-            key={company.id}
-            active={company.current}
-            data-testid="company-button"
-          >
-            {company.name}
-          </CompanyButton>
-        ))}
+        {companies && companies?.length > 0 ? (
+          companies.map((company) => (
+            <CompanyButton
+              key={company.id}
+              active={company.current}
+              click={() => changeCurrentCompany(company.id)}
+              data-testid="company-button"
+            >
+              {company.name}
+            </CompanyButton>
+          ))
+        ) : (
+          <Loading color={'#fff'} size={'md'} />
+        )}
       </Flex>
     </Flex>
   );

@@ -1,43 +1,50 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Header } from '../../../components';
-import { CompanyState } from '../../../domain';
 
 describe('Header component', () => {
-  const companies: CompanyState[] = [
-    { id: '1', name: 'Company One', current: true },
-    { id: '2', name: 'Company Two', current: false },
+  const mockCompanies = [
+    { id: '1', name: 'Company 1', current: true },
+    { id: '2', name: 'Company 2', current: false },
   ];
 
-  it('should render the Header component', () => {
+  it('should render the header container with logo and company buttons', () => {
     render(
-      <ChakraProvider>
-        <Header companies={companies} />
-      </ChakraProvider>,
+      <Header companies={mockCompanies} changeCurrentCompany={() => {}} />,
     );
 
-    expect(screen.getByTestId('header-container')).toBeInTheDocument();
+    const headerContainer = screen.getByTestId('header-container');
+    const logoIcon = screen.getByTestId('logo-icon');
+    const companyButtons = screen.getAllByTestId('company-button');
+
+    expect(headerContainer).toBeInTheDocument();
+    expect(logoIcon).toBeInTheDocument();
+    expect(companyButtons).toHaveLength(mockCompanies.length);
   });
 
-  it('should render the logo icon', () => {
+  it('should call changeCurrentCompany function when a company button is clicked', () => {
+    const mockChangeCurrentCompany = jest.fn();
     render(
-      <ChakraProvider>
-        <Header companies={companies} />
-      </ChakraProvider>,
+      <Header
+        companies={mockCompanies}
+        changeCurrentCompany={mockChangeCurrentCompany}
+      />,
     );
 
-    expect(screen.getByTestId('logo-icon')).toBeInTheDocument();
-  });
-
-  it('should render the company buttons', () => {
-    render(
-      <ChakraProvider>
-        <Header companies={companies} />
-      </ChakraProvider>,
-    );
-
-    companies.forEach((company) => {
-      expect(screen.getByText(company.name)).toBeInTheDocument();
+    const companyButtons = screen.getAllByTestId('company-button');
+    companyButtons.forEach((button) => {
+      fireEvent.click(button);
     });
+
+    expect(mockChangeCurrentCompany).toHaveBeenCalledTimes(
+      mockCompanies.length,
+    );
+  });
+
+  it('should render loading component if companies prop is empty', () => {
+    render(<Header companies={[]} changeCurrentCompany={() => {}} />);
+
+    const loadingComponent = screen.getByTestId('loading');
+
+    expect(loadingComponent).toBeInTheDocument();
   });
 });
