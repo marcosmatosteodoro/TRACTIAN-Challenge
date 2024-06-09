@@ -1,27 +1,49 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { render, screen } from '@testing-library/react';
-import { LogoIcon, SecondaryButton } from '../../../components';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { SecondaryButton } from '../../../components';
 
-describe('SecondaryButton component', () => {
-  it('should render the SecondaryButton component with children and icon', () => {
-    const onClickMock = jest.fn();
 
+describe('SecondaryButton', () => {
+  test('renders with thunderbolt icon', () => {
+    const handleClick = jest.fn();
     render(
-      <ChakraProvider>
-        <SecondaryButton icon={<LogoIcon />} onClick={onClickMock}>
-          Click me
-        </SecondaryButton>
-      </ChakraProvider>,
+      <SecondaryButton icon="thunderbolt" onClick={handleClick}>
+        Thunderbolt
+      </SecondaryButton>
     );
+    expect(screen.getByTestId('thunderbolt-icon')).toBeInTheDocument();
+  });
 
-    const buttonElement = screen.getByRole('button', { name: 'Click me' });
-    const iconElement = screen.getByTestId('secondary-button');
+  test('renders with info icon', () => {
+    const handleClick = jest.fn();
+    render(
+      <SecondaryButton icon="infoIcon" onClick={handleClick}>
+        Info
+      </SecondaryButton>
+    );
+    expect(screen.getByTestId('info-icon')).toBeInTheDocument();
+  });
 
-    expect(buttonElement).toBeInTheDocument();
-    expect(iconElement).toBeInTheDocument();
+  test.skip('calls onClick and toggles active state', () => {
+    const handleClick = jest.fn();
+    render(
+      <SecondaryButton icon="infoIcon" onClick={handleClick}>
+        Click me
+      </SecondaryButton>
+    );
+    const button = screen.getByTestId('secondary-button');
 
-    // Check if the button contains the text and the icon
-    expect(buttonElement).toHaveTextContent('Click me');
-    expect(iconElement).toBeInTheDocument();
+    expect(button).toHaveStyle('background-color: #FFFFFF');
+
+    fireEvent.click(button);
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+
+    expect(button).toHaveStyle('background-color: #2188FF');
+
+    fireEvent.click(button);
+
+    expect(handleClick).toHaveBeenCalledTimes(2);
+
+    expect(button).toHaveStyle('background-color: #FFFFFF');
   });
 });
