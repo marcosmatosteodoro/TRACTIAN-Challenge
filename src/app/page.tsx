@@ -1,21 +1,28 @@
 'use client';
 
+import { useAplicationContext } from '@/context/AplicationContext';
 import useApi from '@/hooks/useApi.hook';
+import useTreeNode from '@/hooks/useTreeNode.hook';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { Header, MainContent } from '../components';
 export default function Home() {
+  const application = useAplicationContext();
+
+  const { bringCompanies, bringAssets, bringLocations } = useApi(application);
+
+  const { getTreeNode } = useTreeNode({ application });
+
   const {
-    bringCompanies,
-    bringAssets,
-    changeCurrentCompany,
-    changeCurrentAsset,
-    getTreeNode,
     companies,
     currentCompany,
     currentAsset,
+    assets,
+    locations,
     treeNode,
-  } = useApi();
+    updateCurrentCompany,
+    updateCurrentAsset,
+  } = application;
 
   useEffect(() => {
     bringCompanies();
@@ -23,10 +30,16 @@ export default function Home() {
 
   useEffect(() => {
     if (currentCompany?.id) {
-      getTreeNode(currentCompany.id);
       bringAssets(currentCompany.id);
+      bringLocations(currentCompany.id);
     }
   }, [currentCompany]);
+
+  useEffect(() => {
+    if (assets && locations) {
+      getTreeNode();
+    }
+  }, [assets, locations]);
 
   return (
     <Grid
@@ -44,18 +57,15 @@ export default function Home() {
         top="0"
         zIndex="10"
       >
-        <Header
-          companies={companies.data}
-          changeCurrentCompany={changeCurrentCompany}
-        />
+        <Header companies={companies} update={updateCurrentCompany} />
       </GridItem>
 
       <GridItem m="8px" p={0} area={'main'} as="main">
         <MainContent
-          changeCurrentAsset={changeCurrentAsset}
+          changeCurrentAsset={updateCurrentAsset}
           currentAsset={currentAsset}
           currentCompany={currentCompany}
-          treeNode={treeNode?.data}
+          treeNode={treeNode}
         />
       </GridItem>
     </Grid>
