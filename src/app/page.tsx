@@ -11,7 +11,13 @@ export default function Home() {
 
   const { bringCompanies, bringAssets, bringLocations } = useApi(application);
 
-  const { getTreeNode } = useTreeNode({ application });
+  const {
+    getTreeNode,
+    filterByAlert,
+    filterBySearch,
+    filterByThunderbolt,
+    filter,
+  } = useTreeNode({ application });
 
   const {
     companies,
@@ -63,9 +69,13 @@ export default function Home() {
       <GridItem m="8px" p={0} area={'main'} as="main">
         <MainContent
           changeCurrentAsset={updateCurrentAsset}
+          filterByAlert={filterByAlert}
+          filterBySearch={filterBySearch}
+          filterByThunderbolt={filterByThunderbolt}
           currentAsset={currentAsset}
           currentCompany={currentCompany}
           treeNode={treeNode}
+          filter={filter}
         />
       </GridItem>
     </Grid>

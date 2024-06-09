@@ -65,6 +65,10 @@ export const TreeItem = ({
     }
   }, [currentAsset, item]);
 
+  useEffect(() => {
+    setIsOpen(startOpen);
+  }, [startOpen]);
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };

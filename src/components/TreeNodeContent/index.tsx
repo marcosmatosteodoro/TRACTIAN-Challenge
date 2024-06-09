@@ -7,18 +7,20 @@ import { TreeItens } from '../TreeItens';
 
 type TreeNodeContentProps = {
   treeNode: TreeNode[];
-  changeCurrentAsset: (id: string) => void;
   currentAsset: Assets;
+  changeCurrentAsset: (id: string) => void;
+  filterBySearch: (text: string) => void;
 };
 
 export const TreeNodeContent = ({
   treeNode,
-  changeCurrentAsset,
   currentAsset,
+  changeCurrentAsset,
+  filterBySearch,
 }: TreeNodeContentProps) => {
   return (
     <Box minH={'500px'} p={0} m={0}>
-      <SearchInput change={() => {}} />
+      <SearchInput filterBySearch={filterBySearch} />
       <TreeItens
         treeNode={treeNode}
         changeCurrentAsset={changeCurrentAsset}

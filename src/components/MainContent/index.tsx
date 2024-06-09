@@ -1,6 +1,7 @@
 'use client';
 
 import { Assets, Company, TreeNode } from '@/domain';
+import { TreeNodeFilters } from '@/hooks/useTreeNode.hook';
 import { Container, Grid } from '@chakra-ui/react';
 import { AssetDetails } from '../AssetDetails';
 import { CardContainer } from '../CardContainer';
@@ -11,27 +12,41 @@ import { TreeNodeContent } from '../TreeNodeContent';
 type MainProps = {
   currentCompany: Company;
   currentAsset: Assets;
-  changeCurrentAsset: (id: string) => void;
   treeNode: TreeNode[];
+  filter: TreeNodeFilters;
+  changeCurrentAsset: (id: string) => void;
+  filterByAlert: () => void;
+  filterBySearch: (text: string) => void;
+  filterByThunderbolt: () => void;
 };
 
 export const MainContent = ({
   currentCompany,
   currentAsset,
   treeNode,
+  filter,
   changeCurrentAsset,
+  filterByAlert,
+  filterByThunderbolt,
+  filterBySearch,
 }: MainProps) => {
   return (
     <Container maxW={'1700px'} h={'100%'}>
       <CardContainer>
         {currentCompany?.id && treeNode?.length > 0 ? (
           <>
-            <RowContainer company={currentCompany} />
+            <RowContainer
+              company={currentCompany}
+              filter={filter}
+              filterByAlert={filterByAlert}
+              filterByThunderbolt={filterByThunderbolt}
+            />
 
             <Grid gridTemplateColumns={'479px 1fr'} gap={'8px'}>
               <CardContainer padding={'0'}>
                 <TreeNodeContent
                   changeCurrentAsset={changeCurrentAsset}
+                  filterBySearch={filterBySearch}
                   currentAsset={currentAsset}
                   treeNode={treeNode}
                 />
