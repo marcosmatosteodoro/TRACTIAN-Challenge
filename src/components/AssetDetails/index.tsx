@@ -1,6 +1,6 @@
 'use client';
 
-import { Assets } from '@/domain';
+import { Assets } from '@/domain/models';
 import { Box } from '@chakra-ui/react';
 import { BoltIcon, ElipseIcon } from '../icons';
 import { AssetDetaillsContent, AssetDetaillsTop } from './components';

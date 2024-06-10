@@ -2,7 +2,7 @@
 
 import { Box, Flex } from '@chakra-ui/react';
 import { CompanyButton, Loading, LogoIcon } from '../';
-import { CompanyState } from '../../domain';
+import { CompanyState } from '../../domain/models';
 
 type HeaderProps = {
   companies: CompanyState[];

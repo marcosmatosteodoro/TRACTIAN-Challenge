@@ -1,7 +1,7 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, CompanyState, Locations, TreeNode } from '@/domain';
+import { Assets, CompanyState, Locations, TreeNode } from '@/domain/models';
 import Api from '@/services/Api.service';
 import { useState } from 'react';
 

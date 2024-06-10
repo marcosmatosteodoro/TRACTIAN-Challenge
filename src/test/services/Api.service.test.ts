@@ -1,4 +1,4 @@
-import { Assets, Company, Locations } from '@/domain';
+import { Assets, Company, Locations } from '@/domain/models';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Api from '../../services/Api.service';

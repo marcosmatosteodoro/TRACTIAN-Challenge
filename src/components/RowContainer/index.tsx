@@ -1,6 +1,6 @@
 'use client';
 
-import { Company } from '@/domain';
+import { Company } from '@/domain/models';
 import { TreeNodeFilters } from '@/hooks/useTreeNode.hook';
 import { Flex, Text } from '@chakra-ui/react';
 import { SecondaryButton } from '../';

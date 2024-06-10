@@ -1,4 +1,4 @@
-import { Assets, TreeNode } from '@/domain';
+import { Assets, TreeNode } from '@/domain/models';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';

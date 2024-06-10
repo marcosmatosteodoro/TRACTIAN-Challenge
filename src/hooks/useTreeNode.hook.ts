@@ -1,7 +1,7 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, Locations, TreeNode } from '@/domain';
+import { Assets, Locations, TreeNode } from '@/domain/models';
 import { useState } from 'react';
 
 interface UseTreeNodeReturnType {

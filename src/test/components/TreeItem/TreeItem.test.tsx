@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TreeItem } from '../../../components';
-import { TreeNode } from '../../../domain';
+import { TreeNode } from '../../../domain/models';
 
 const mockTreeNode: TreeNode = {
   location: { id: '1', name: 'Location 1', parentId: null },

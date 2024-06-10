@@ -1,4 +1,4 @@
-import { Assets, Company, Locations } from '@/domain';
+import { Assets, Company, Locations } from '@/domain/models';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 class Api {

@@ -1,4 +1,4 @@
-import { TreeNode } from '@/domain';
+import { TreeNode } from '@/domain/models';
 import { render, screen } from '@testing-library/react';
 import { TreeItens } from '../../../components';
 
