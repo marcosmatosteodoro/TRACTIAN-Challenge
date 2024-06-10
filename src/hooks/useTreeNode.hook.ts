@@ -42,6 +42,7 @@ const useTreeNode = ({
   const getTreeNode = () => {
     updateTreeNode({} as TreeNode[]);
     setSearchList([] as Assets[]);
+    setFilters({alert: false, thunderbolt: false, search: false} as TreeNodeFilters)
 
     const treeNode = buildTreeNode(locations, assets);
     updateTreeNode(treeNode as TreeNode[]);
@@ -165,7 +166,6 @@ const useTreeNode = ({
     const filters = { ...filter, thunderbolt: !filter.thunderbolt };
     const list = getSearcFilter({filters});
 
-    console.log(filters)
     findAssets({ assets: list, treeNode, update: true });
   };
 
