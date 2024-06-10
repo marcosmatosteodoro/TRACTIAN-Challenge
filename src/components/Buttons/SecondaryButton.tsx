@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Text } from '@chakra-ui/react';
-import { InfoIcon, ThunderboltIcon } from '../icons';
+import useButtons from './hooks/useButtonHook';
 
 type SecondaryButtonProps = {
   children: React.ReactNode;
@@ -16,20 +16,7 @@ export const SecondaryButton = ({
   active,
   onClick,
 }: SecondaryButtonProps) => {
-  const whiteColor = '#FFFFFF';
-  const grayColor = '#77818C';
-  const blueColor = '#2188FF';
-
-  const choiceIcon = (icon: string) => {
-    const size = '16px';
-    const color = active ? whiteColor : blueColor;
-    switch (icon) {
-      case 'thunderbolt':
-        return <ThunderboltIcon color={color} w={size} h={size} m={0} />;
-      case 'infoIcon':
-        return <InfoIcon color={color} w={size} h={size} m={0} />;
-    }
-  };
+  const { primaryColor, choiceIcon, grayColor, whiteColor } = useButtons();
 
   return (
     <Button
@@ -38,12 +25,12 @@ export const SecondaryButton = ({
       borderColor={'#D8DFE6'}
       p={'6px, 16px, 6px, 14px'}
       gap={'6px'}
-      bg={active ? blueColor : whiteColor}
+      bg={active ? primaryColor : whiteColor}
       fontSize={'14px'}
       fontWeight={600}
       lineHeight={'20px'}
       color={active ? whiteColor : grayColor}
-      leftIcon={choiceIcon(icon)}
+      leftIcon={choiceIcon({ active, icon })}
       onClick={onClick}
       _hover={{
         bg: grayColor,

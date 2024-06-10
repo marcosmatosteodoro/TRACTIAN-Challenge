@@ -2,6 +2,7 @@
 
 import { Button, Text } from '@chakra-ui/react';
 import { GoldIcon } from '../';
+import useButtons from './hooks/useButtonHook';
 
 type CompanyButtonProps = {
   children: React.ReactNode;
@@ -16,12 +17,12 @@ export const CompanyButton = ({
   click,
   disableHover,
 }: CompanyButtonProps) => {
-  const primaryColor = '#2188FF';
+  const { primaryColor, secondaryColor, whiteColor } = useButtons();
 
   return (
     <Button
-      bg={active === true ? primaryColor : '#023B78'}
-      color={'#ffffff'}
+      bg={active === true ? primaryColor : secondaryColor}
+      color={whiteColor}
       leftIcon={
         <GoldIcon
           h={'16px'}
