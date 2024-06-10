@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, Flex, Input } from '@chakra-ui/react';
-import { useState } from 'react';
 import { SearchIcon } from '../icons';
 
 type SearchInputProps = {
@@ -9,11 +8,8 @@ type SearchInputProps = {
 };
 
 export const SearchInput = ({ filterBySearch }: SearchInputProps) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setSearchTerm(value);
     filterBySearch(value);
   };
 

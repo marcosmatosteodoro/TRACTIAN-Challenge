@@ -9,16 +9,16 @@ import Home from '../app/page';
 // jest.mock('../components/MainContent', () => () => <div>MainContent</div>);
 
 describe('Home', () => {
-  const mockUseAplicationContext = {
-    companies: [],
-    currentCompany: { id: '1' },
-    currentAsset: {},
-    assets: [],
-    locations: [],
-    treeNode: [],
-    updateCurrentCompany: jest.fn(),
-    updateCurrentAsset: jest.fn(),
-  };
+  // const mockUseAplicationContext = {
+  //   companies: [],
+  //   currentCompany: { id: '1' },
+  //   currentAsset: {},
+  //   assets: [],
+  //   locations: [],
+  //   treeNode: [],
+  //   updateCurrentCompany: jest.fn(),
+  //   updateCurrentAsset: jest.fn(),
+  // };
 
   const mockUseApi = {
     bringCompanies: jest.fn(),
