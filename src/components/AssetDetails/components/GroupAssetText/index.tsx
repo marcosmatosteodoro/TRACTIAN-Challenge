@@ -19,16 +19,17 @@ export const GroupAssetText = ({ title, children }: GroupAssetTextProps) => {
         {title}
       </Text>
 
-      <Text
+      <Box
+        display={'flex'}
+        alignItems={'center'}
+        gap={'8px'}
         fontSize={'16px'}
         fontWeight={'400'}
         lineHeight={'24px'}
         color={'#88929C'}
-        display={'flex'}
-        gap={'8px'}
       >
         {children}
-      </Text>
+      </Box>
     </Box>
   );
 };
