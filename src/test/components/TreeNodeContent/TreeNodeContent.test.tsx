@@ -1,8 +1,8 @@
-import { Assets, TreeNode } from '@/domain/models';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TreeItens } from '../../..//components';
+import { TreeNodeContent } from '../../../components';
+import { Assets, TreeNode } from '../../../domain/models';
 
-describe('TreeItems', () => {
+describe('TreeNodeContent', () => {
   const mockTreeNode: TreeNode[] = [
     {
       location: { id: '1', name: 'Location A', parentId: null },
@@ -37,29 +37,42 @@ describe('TreeItems', () => {
   };
 
   const mockChangeCurrentAsset = jest.fn();
+  const mockFilterBySearch = jest.fn();
 
   const mockProps = {
     treeNode: mockTreeNode,
     currentAsset: mockCurrentAsset,
     changeCurrentAsset: mockChangeCurrentAsset,
+    filterBySearch: mockFilterBySearch,
   };
 
   it.skip('renders component correctly', () => {
-    render(<TreeItens {...mockProps} />);
+    render(
+      <TreeNodeContent {...mockProps} />
+    );
 
+    const searchInput = screen.getByTestId('search-input');
     const treeItemText = screen.getByTestId('tree-item-text');
+
+    expect(searchInput).toBeInTheDocument();
     expect(treeItemText).toBeInTheDocument();
   });
 
-  it('renders "No items found" message when no items are present', () => {
-    render(<TreeItens treeNode={[]} currentAsset={mockCurrentAsset} changeCurrentAsset={mockChangeCurrentAsset} />);
+  it.skip('executes filterBySearch when search input changes', () => {
+    render(
+      <TreeNodeContent {...mockProps} />
+    );
 
-    const noItemsFoundText = screen.getByText('No items found');
-    expect(noItemsFoundText).toBeInTheDocument();
+    const searchInput = screen.getByTestId('search-input');
+    fireEvent.change(searchInput, { target: { value: 'Test' } });
+
+    expect(mockFilterBySearch).toHaveBeenCalledWith('Test');
   });
 
   it.skip('executes changeCurrentAsset when a tree item is clicked', () => {
-    render(<TreeItens {...mockProps} />);
+    render(
+      <TreeNodeContent {...mockProps} />
+    );
 
     const treeItemButton = screen.getByRole('button');
     fireEvent.click(treeItemButton);

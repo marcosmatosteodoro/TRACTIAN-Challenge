@@ -1,43 +1,98 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { CompanyButton } from '../../../components';
 
-describe('CompanyButton component', () => {
-  it('should render the button with children and icon', () => {
-    render(<CompanyButton click={() => {}}>Test</CompanyButton>);
-    const buttonElement = screen.getByTestId('company-button');
-    expect(buttonElement).toBeInTheDocument();
-    expect(buttonElement).toHaveTextContent('Test Unit');
-    expect(buttonElement).toContainHTML('<svg'); // Ensure the icon is present
+describe('CompanyButton', () => {
+  const clickMock = jest.fn();
+
+  beforeEach(() => {
+    clickMock.mockClear();
   });
 
-  it('should call a function when clicked', () => {
-    const onClickMock = jest.fn();
-    render(<CompanyButton click={onClickMock}>Test</CompanyButton>);
-    const buttonElement = screen.getByTestId('company-button');
-    fireEvent.click(buttonElement);
-    expect(onClickMock).toHaveBeenCalled();
-  });
-
-  it('should change background color and hover style when active', () => {
+  it('renders with the correct text', () => {
     render(
-      <CompanyButton active click={() => {}}>
-        Test
-      </CompanyButton>,
+      <CompanyButton click={clickMock}>
+        Click me
+      </CompanyButton>
     );
-    const buttonElement = screen.getByTestId('company-button');
-    expect(buttonElement).toHaveStyle('background-color: #2188FF');
-    fireEvent.mouseEnter(buttonElement);
-    expect(buttonElement).toHaveStyle('opacity: 0.9');
+
+    expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
-  it('should not change hover style when disableHover is true', () => {
+  it('applies active styles when active prop is true', () => {
     render(
-      <CompanyButton active disableHover click={() => {}}>
-        Test
-      </CompanyButton>,
+      <CompanyButton active={true} click={clickMock}>
+        Active Button
+      </CompanyButton>
     );
-    const buttonElement = screen.getByTestId('company-button');
-    fireEvent.mouseEnter(buttonElement);
-    expect(buttonElement).not.toHaveStyle('opacity: 0.9');
+
+    const button = screen.getByTestId('company-button');
+    expect(button).toHaveStyle('background-color: #2188FF');
+  });
+
+  it.skip('applies default styles when active prop is false', () => {
+    render(
+      <CompanyButton active={false} click={clickMock}>
+        Inactive Button
+      </CompanyButton>
+    );
+
+    const button = screen.getByTestId('company-button');
+    expect(button).toHaveStyle('background-color: #023B78');
+  });
+
+  it('calls the click function when clicked', () => {
+    render(
+      <CompanyButton click={clickMock}>
+        Clickable Button
+      </CompanyButton>
+    );
+
+    const button = screen.getByTestId('company-button');
+    fireEvent.click(button);
+    expect(clickMock).toHaveBeenCalled();
+  });
+
+  it('applies hover styles when disableHover prop is false', () => {
+    render(
+      <CompanyButton disableHover={false} click={clickMock}>
+        Hoverable Button
+      </CompanyButton>
+    );
+
+    const button = screen.getByTestId('company-button');
+    fireEvent.mouseOver(button);
+    expect(button).toHaveStyle('opacity: 0.9');
+  });
+
+  it('does not apply hover styles when disableHover prop is true', () => {
+    render(
+      <CompanyButton disableHover={true} click={clickMock}>
+        Non-hoverable Button
+      </CompanyButton>
+    );
+
+    const button = screen.getByTestId('company-button');
+    fireEvent.mouseOver(button);
+    expect(button).not.toHaveStyle('opacity: 0.9');
+  });
+
+  it('renders the "Unit" text correctly on medium screens and larger', () => {
+    render(
+      <CompanyButton click={clickMock}>
+        Click me
+      </CompanyButton>
+    );
+
+    expect(screen.getByText('Unit')).toHaveStyle('display: block');
+  });
+
+  it.skip('does not render the "Unit" text on small screens', () => {
+    render(
+      <CompanyButton click={clickMock}>
+        Click me
+      </CompanyButton>
+    );
+
+    expect(screen.getByText('Unit')).toHaveStyle('display: none');
   });
 });

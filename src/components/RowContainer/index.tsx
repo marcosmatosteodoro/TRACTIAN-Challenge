@@ -42,7 +42,6 @@ export const RowContainer = ({
       </Flex>
 
       <Flex gap={'8px'}
-      // flexDirection={{base: 'column', md: 'row'}}
       >
         <SecondaryButton
           icon={'thunderbolt'}

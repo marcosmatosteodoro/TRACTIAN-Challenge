@@ -1,7 +1,7 @@
 'use client';
 
-import { MdOutlineRouterIcon, WifiTetheringIcon } from '@/components/icons';
 import { Box, Circle, Divider, Flex, Grid } from '@chakra-ui/react';
+import { MdOutlineRouterIcon, WifiTetheringIcon } from '../../../';
 import { GroupAssetText } from '../GroupAssetText';
 
 export const AssetDetaillsContent = () => {

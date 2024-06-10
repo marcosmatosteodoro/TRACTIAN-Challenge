@@ -1,28 +1,69 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { Company, TreeNodeFilters } from '@/domain/models';
 import { render, screen } from '@testing-library/react';
 import { RowContainer } from '../../../components';
 
-describe('RowContainer component', () => {
-  it('should render the RowContainer component with company name and buttons', () => {
-    const company = {
-      id: 'cscsciub461',
-      name: 'Example Company',
-    };
+describe('RowContainer', () => {
+  const mockCompany: Company = { id: '1', name: 'Company A' };
+  const mockFilter: TreeNodeFilters = {
+    alert: false,
+    thunderbolt: false,
+    search: false,
+  };
 
+  it('renders component correctly', () => {
     render(
-      <ChakraProvider>
-        <RowContainer company={company} />
-      </ChakraProvider>,
+      <RowContainer
+        company={mockCompany}
+        filter={mockFilter}
+        filterByAlert={() => {}}
+        filterByThunderbolt={() => {}}
+      />
     );
 
-    const companyNameElement = screen.getByText(/Example Company Unit/i);
-    expect(companyNameElement).toBeInTheDocument();
+    const ativosText = screen.getByText('Ativos');
+    const companyUnitText = screen.getByText('/ Company A Unit');
+    const thunderboltButton = screen.getByText('Sensor de Energia');
+    const alertButton = screen.getByText('Critico');
 
-    const energyButton = screen.getByRole('button', {
-      name: /Sensor de Energia/i,
-    });
-    const infoButton = screen.getByRole('button', { name: /Critico/i });
-    expect(energyButton).toBeInTheDocument();
-    expect(infoButton).toBeInTheDocument();
+    expect(ativosText).toBeInTheDocument();
+    expect(companyUnitText).toBeInTheDocument();
+    expect(thunderboltButton).toBeInTheDocument();
+    expect(alertButton).toBeInTheDocument();
+  });
+
+  it('executes filterByThunderbolt when thunderbolt button is clicked', () => {
+    const mockFilterByThunderbolt = jest.fn();
+
+    render(
+      <RowContainer
+        company={mockCompany}
+        filter={mockFilter}
+        filterByAlert={() => {}}
+        filterByThunderbolt={mockFilterByThunderbolt}
+      />
+    );
+
+    const thunderboltButton = screen.getByText('Sensor de Energia');
+    thunderboltButton.click();
+
+    expect(mockFilterByThunderbolt).toHaveBeenCalled();
+  });
+
+  it('executes filterByAlert when alert button is clicked', () => {
+    const mockFilterByAlert = jest.fn();
+
+    render(
+      <RowContainer
+        company={mockCompany}
+        filter={mockFilter}
+        filterByAlert={mockFilterByAlert}
+        filterByThunderbolt={() => {}}
+      />
+    );
+
+    const alertButton = screen.getByText('Critico');
+    alertButton.click();
+
+    expect(mockFilterByAlert).toHaveBeenCalled();
   });
 });

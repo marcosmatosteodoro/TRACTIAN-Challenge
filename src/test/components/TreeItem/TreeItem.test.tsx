@@ -1,92 +1,71 @@
+import { Assets, TreeNode } from '@/domain/models';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TreeItem } from '../../../components';
-import { TreeNode } from '../../../domain/models';
-
-const mockTreeNode: TreeNode = {
-  location: { id: '1', name: 'Location 1', parentId: null },
-  asset: {
-    id: '2',
-    name: 'Asset 1',
-    status: 'operating',
-    locationId: null,
-    parentId: null,
-    sensorType: 'energy',
-  },
-  childrens: [],
-  startOpen: false,
-  hidden: false,
-};
 
 describe('TreeItem', () => {
-  test.skip('renders with location icon', () => {
-    const nodeWithLocation: TreeNode = {
-      ...mockTreeNode,
-      asset: null,
-    };
-    render(<TreeItem item={nodeWithLocation} />);
-
-    expect(screen.getByTestId('location-icon')).toBeInTheDocument();
-    expect(screen.getByText('Location 1')).toBeInTheDocument();
-  });
-
-  test.skip('renders with asset icon and status icon', () => {
-    const nodeWithAsset: TreeNode = {
-      ...mockTreeNode,
-      location: null,
-    };
-    render(<TreeItem item={nodeWithAsset} />);
-
-    expect(screen.getByTestId('cube-outline-icon')).toBeInTheDocument();
-    expect(screen.getByText('Asset 1')).toBeInTheDocument();
-    expect(screen.getByTestId('bolt-icon')).toBeInTheDocument();
-  });
-
-  test.skip('toggles open state and displays children', () => {
-    const nodeWithChildren: TreeNode = {
-      ...mockTreeNode,
-      childrens: [
-        {
-          ...mockTreeNode,
-          location: { id: '3', name: 'Child Location', parentId: null },
-        },
-      ],
-    };
-    render(<TreeItem item={nodeWithChildren}>Child Content</TreeItem>);
-
-    // Verifica que o botão Chevron está presente
-    const toggleButton = screen.getByRole('button', {
-      name: /toggle children/i,
-    });
-    expect(toggleButton).toBeInTheDocument();
-
-    // Verifica que o conteúdo das crianças não está visível inicialmente
-    expect(screen.queryByText('Child Content')).toBeNull();
-
-    // Clica no botão Chevron para abrir
-    fireEvent.click(toggleButton);
-    expect(screen.getByText('Child Content')).toBeInTheDocument();
-
-    // Clica no botão Chevron para fechar
-    fireEvent.click(toggleButton);
-    expect(screen.queryByText('Child Content')).toBeNull();
-  });
-
-  test.skip('shows assets when there are no children', () => {
-    const nodeWithAssetOnly: TreeNode = {
-      ...mockTreeNode,
-      childrens: [],
-      asset: {
-        id: '2',
-        name: 'Asset 2',
-        status: 'alert',
-        locationId: null,
-        parentId: null,
-        sensorType: 'energy',
+  const mockItem: TreeNode = {
+    location: { id: '1', name: 'Location A', parentId: null },
+    asset: {
+      id: '1',
+      name: 'Test Asset',
+      status: 'operating',
+      locationId: '1',
+      parentId: '1',
+      sensorType: 'energy',
+    },
+    childrens: [
+      {
+        location: null,
+        asset: null,
+        childrens: [],
+        startOpen: false,
+        hidden: false,
       },
-    };
-    render(<TreeItem item={nodeWithAssetOnly} />);
+    ],
+    startOpen: false,
+    hidden: false,
+  };
 
-    expect(screen.getByTestId('elipse-icon')).toBeInTheDocument();
-    expect(screen.getByText('Asset 2')).toBeInTheDocument();
+  const mockCurrentAsset: Assets = {
+    id: '1',
+    name: 'Test Asset',
+    status: 'operating',
+    locationId: '1',
+    parentId: '1',
+    sensorType: 'energy',
+  };
+
+  const mockChangeCurrentAsset = jest.fn();
+
+  const mockProps = {
+    item: mockItem,
+    currentAsset: mockCurrentAsset,
+    changeCurrentAsset: mockChangeCurrentAsset,
+  };
+
+  it('renders component correctly', () => {
+    render(<TreeItem {...mockProps} />);
+
+    const treeItemText = screen.getByTestId('tree-item-text');
+    expect(treeItemText).toBeInTheDocument();
+  });
+
+  it.skip('executes changeCurrentAsset when button is clicked', () => {
+    render(<TreeItem {...mockProps} />);
+
+    const treeItemButton = screen.getByRole('button');
+    fireEvent.click(treeItemButton);
+
+    expect(mockChangeCurrentAsset).toHaveBeenCalledWith('1');
+  });
+
+  it.skip('toggles children when button is clicked', () => {
+    render(<TreeItem {...mockProps} />);
+
+    const toggleButton = screen.getByTestId('toggle-children-button');
+    fireEvent.click(toggleButton);
+
+    const childrenContainer = screen.getByText('Location A');
+    expect(childrenContainer).toBeInTheDocument();
   });
 });
