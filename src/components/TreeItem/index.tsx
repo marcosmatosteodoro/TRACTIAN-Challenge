@@ -90,7 +90,7 @@ export const TreeItem = ({
       );
     }
 
-    return <CodepenIcon data-testid="codepen-icon" w={size} h={size} />;
+    return <CodepenIcon data-testid="codepen-icon" color={isActive ? '#ffffff' : '#2188FF'} w={size} h={size} />;
   };
 
   const choiceStatus = (asset: TreeItemProps['item']['asset']) => {
@@ -153,20 +153,27 @@ export const TreeItem = ({
         p={0}
         w={'full'}
         justifyContent={'flex-start'}
-        bg={isActive ? 'red' : 'white'}
-        _hover={
-          asset && childrens?.length === 0
-            ? {
-                bg: 'gray.100',
-              }
-            : {}
-        }
+        bg={isActive ? '#2188FF' : '#ffffff'}
+        _hover={{
+          '& > p': {
+            position: 'relative',
+            _after: {
+              content: '""',
+              position: 'absolute',
+              left: 0,
+              bottom: '-2px',
+              height: '1px',
+              width: '100%',
+              bg: isActive ? '#ffffff' : '#2188FF',
+            },
+          },
+        }}
       >
         <ChevronIcon isOpen={isOpen} childrens={childrens} />
         {typeIcon}
 
         <Text
-          color={isActive ? 'white' : 'black'}
+          color={isActive ? '#ffffff' : '#17192D'}
           px={'4px'}
           fontSize={'14px'}
           fontWeight={400}
