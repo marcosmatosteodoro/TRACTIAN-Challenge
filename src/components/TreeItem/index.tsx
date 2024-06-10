@@ -60,9 +60,8 @@ export const TreeItem = ({
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (currentAsset?.id && item.asset?.id === currentAsset.id) {
-      setIsActive(true);
-    }
+    const validation = !!currentAsset?.id && item.asset?.id === currentAsset.id;
+    setIsActive(validation);
   }, [currentAsset, item]);
 
   useEffect(() => {
