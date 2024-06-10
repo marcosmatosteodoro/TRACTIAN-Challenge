@@ -162,31 +162,23 @@ const useTreeNode = ({
   };
 
   const filterByThunderbolt = () => {
-    const list = searchList.filter((asset) => {
-      return asset?.status === 'operating';
-    });
+    const filters = { ...filter, thunderbolt: !filter.thunderbolt };
+    const list = getSearcFilter({filters});
 
-    setFilters({ ...filter, thunderbolt: !filter.thunderbolt, alert: false });
-
+    console.log(filters)
     findAssets({ assets: list, treeNode, update: true });
   };
 
   const filterByAlert = () => {
-    const list = searchList.filter((asset) => {
-      return asset?.status === 'alert';
-    });
-
-    setFilters({ ...filter, alert: !filter.alert, thunderbolt: false });
+    const filters = { ...filter, alert: !filter.alert };
+    const list = getSearcFilter({filters})
 
     findAssets({ assets: list, treeNode, update: true });
   };
 
   const filterBySearch = (text: string) => {
-    const list = searchList.filter((asset) => {
-      return asset?.name.toLowerCase().includes(text.toLowerCase());
-    });
-
-    setFilters({ search: !filter.search, thunderbolt: false, alert: false });
+    const filters = { ...filter, search: !!text };
+    const list = getSearcFilter({filters, text});
 
     findAssets({ assets: list, treeNode, update: true });
   };
@@ -233,6 +225,39 @@ const useTreeNode = ({
     return { active: response, data: newTreeNode };
   };
 
+  const getSearcFilter = ({filters, text}: {filters: TreeNodeFilters, text?: string}) => {
+    if(!filters.alert && !filters.thunderbolt && !filters.search) {
+      setFilters(filters);
+      return searchList;
+    }
+
+    const listWithoutSearch = searchList.filter((asset) => {
+      const validationAlert = filters.alert && asset?.status === 'alert';
+      const validationThunderbolt = filters.thunderbolt && asset?.status === 'operating';
+      const validationSearch = filters.search && !!text
+
+      const validationAlertOrThunderbolt = validationAlert || validationThunderbolt;
+
+      if(validationSearch) {
+        const validationText =  asset?.name.toLowerCase().includes(text.toLowerCase());
+        const validationOnlySearch = !filters.alert && !filters.thunderbolt;
+
+        if (validationText && (validationOnlySearch || validationAlertOrThunderbolt)) {
+          return true;
+        }
+      } else {
+        if (validationAlertOrThunderbolt) {
+          return true;
+        }
+      }
+
+      return false
+    });
+
+    setFilters(filters);
+
+    return listWithoutSearch;
+  }
   return {
     getTreeNode,
     filterByThunderbolt,
