@@ -22,7 +22,7 @@ const useTreeNode = ({
   const [filter, setFilters] = useState<TreeNodeFilters>({
     thunderbolt: false,
     alert: false,
-    search: false,
+    search: '',
   } as TreeNodeFilters);
 
   const [searchList, setSearchList] = useState<Assets[]>([] as Assets[]);
@@ -31,7 +31,7 @@ const useTreeNode = ({
   const getTreeNode = () => {
     updateTreeNode({} as TreeNode[]);
     setSearchList([] as Assets[]);
-    setFilters({alert: false, thunderbolt: false, search: false} as TreeNodeFilters)
+    setFilters({alert: false, thunderbolt: false, search: ''} as TreeNodeFilters)
 
     const treeNode = buildTreeNode(locations, assets);
     updateTreeNode(treeNode as TreeNode[]);
@@ -153,21 +153,21 @@ const useTreeNode = ({
 
   const filterByThunderbolt = () => {
     const filters = { ...filter, thunderbolt: !filter.thunderbolt };
-    const list = getSearcFilter({filters});
+    const list = getSearcFilter(filters);
 
     findAssets({ assets: list, treeNode, update: true });
   };
 
   const filterByAlert = () => {
     const filters = { ...filter, alert: !filter.alert };
-    const list = getSearcFilter({filters})
+    const list = getSearcFilter(filters)
 
     findAssets({ assets: list, treeNode, update: true });
   };
 
   const filterBySearch = (text: string) => {
-    const filters = { ...filter, search: !!text };
-    const list = getSearcFilter({filters, text});
+    const filters = { ...filter, search: text };
+    const list = getSearcFilter(filters);
 
     findAssets({ assets: list, treeNode, update: true });
   };
@@ -200,7 +200,11 @@ const useTreeNode = ({
           treeNode: node.childrens,
           update: false,
         });
-        response = active;
+
+        if(active) {
+          response = true;
+        }
+
         return { ...node, hidden: !active, startOpen: true, childrens: data };
       }
 
@@ -214,22 +218,24 @@ const useTreeNode = ({
     return { active: response, data: newTreeNode };
   };
 
-  const getSearcFilter = ({filters, text}: {filters: TreeNodeFilters, text?: string}) => {
-    if(!filters.alert && !filters.thunderbolt && !filters.search) {
+  const getSearcFilter = (filters: TreeNodeFilters) => {
+    const {thunderbolt, alert, search} = filters;
+
+    if(!alert && !thunderbolt && search === '') {
       setFilters(filters);
       return searchList;
     }
 
     const listWithoutSearch = searchList.filter((asset) => {
-      const validationAlert = filters.alert && asset?.status === 'alert';
-      const validationThunderbolt = filters.thunderbolt && asset?.status === 'operating';
-      const validationSearch = filters.search && !!text
+      const validationAlert = alert && asset?.status === 'alert';
+      const validationThunderbolt = thunderbolt && asset?.status === 'operating';
+      const validationSearch = search && !!search
 
       const validationAlertOrThunderbolt = validationAlert || validationThunderbolt;
 
       if(validationSearch) {
-        const validationText =  asset?.name.toLowerCase().includes(text.toLowerCase());
-        const validationOnlySearch = !filters.alert && !filters.thunderbolt;
+        const validationText =  asset?.name.toLowerCase().includes(search.toLowerCase());
+        const validationOnlySearch = !alert && !thunderbolt;
 
         if (validationText && (validationOnlySearch || validationAlertOrThunderbolt)) {
           return true;

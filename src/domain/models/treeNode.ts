@@ -17,5 +17,5 @@ export type TreeNodeFinder = {
 export type TreeNodeFilters = {
   thunderbolt: boolean;
   alert: boolean;
-  search: boolean;
+  search: string;
 };
