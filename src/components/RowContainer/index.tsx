@@ -20,6 +20,7 @@ export const RowContainer = ({
 }: RowContainerProps) => {
   return (
     <Flex justifyContent={'space-between'}>
+
       <Flex alignItems={'center'} gap={'7px'}>
         <Text
           fontSize={'20px'}
@@ -41,7 +42,9 @@ export const RowContainer = ({
         </Text>
       </Flex>
 
-      <Flex gap={'8px'}>
+      <Flex gap={'8px'}
+      // flexDirection={{base: 'column', md: 'row'}}
+      >
         <SecondaryButton
           icon={'thunderbolt'}
           onClick={filterByThunderbolt}

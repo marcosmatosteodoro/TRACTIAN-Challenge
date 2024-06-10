@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { InfoIcon, ThunderboltIcon } from '../icons';
 
 type SecondaryButtonProps = {
@@ -49,9 +49,16 @@ export const SecondaryButton = ({
         bg: grayColor,
         color: whiteColor,
       }}
+      sx={{
+        'span': {
+          margin: { base: 0, md: 'initial' },
+        },
+      }}
       data-testid="secondary-button"
     >
-      {children}
+      <Text display={{base: 'none', md: 'block'}}>
+        {children}
+      </Text>
     </Button>
   );
 };

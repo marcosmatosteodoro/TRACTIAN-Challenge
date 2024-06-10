@@ -7,7 +7,11 @@ import { GroupAssetText } from '../GroupAssetText';
 export const AssetDetaillsContent = () => {
   return (
     <Grid p={'24px'} m={0} w={'100%'} gap={'24px'}>
-      <Grid w={'100%'} gap={'24px'} gridTemplateColumns={'336px 1fr'}>
+      <Grid
+        w={'100%'}
+        gap={'24px'}
+        gridTemplateColumns={{base: '1fr 1fr', xl: '336px 1fr'}}
+      >
         <Box
           w={'100%'}
           h={'auto'}

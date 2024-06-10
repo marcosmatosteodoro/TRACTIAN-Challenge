@@ -20,7 +20,7 @@ interface UseApiReturnType {
 const useApi = (application: AplicationContextType): UseApiReturnType => {
   const api = new Api();
 
-  const { updateCompanies, updateAssets, updateTreeNode, updateLocations } =
+  const { updateCompanies, updateAssets, updateLocations } =
     application;
 
   const [companies, setCompanies] = useState<Response<CompanyState[]>>(

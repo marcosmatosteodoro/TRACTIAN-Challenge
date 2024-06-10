@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { GoldIcon } from '../';
 
 type CompanyButtonProps = {
@@ -22,7 +22,7 @@ export const CompanyButton = ({
     <Button
       bg={active === true ? primaryColor : '#023B78'}
       color={'#ffffff'}
-      leftIcon={<GoldIcon h={'16px'} w={'16px'} />}
+      leftIcon={<GoldIcon h={'16px'} w={'16px'} display={{base: 'none', md: 'block'}} m={{base: '0px', md: 'initial'}} />}
       onClick={click}
       _hover={
         !disableHover
@@ -34,7 +34,10 @@ export const CompanyButton = ({
       }
       data-testid="company-button"
     >
-      {children} Unit
+      {children}
+      <Text ms={1} display={{base: 'none', md: 'block'}}>
+        Unit
+      </Text>
     </Button>
   );
 };

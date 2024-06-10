@@ -19,7 +19,7 @@ export const TreeNodeContent = ({
   filterBySearch,
 }: TreeNodeContentProps) => {
   return (
-    <Box minH={'500px'} p={0} m={0}>
+    <Box p={0} m={0} overflow={'auto'}>
       <SearchInput filterBySearch={filterBySearch} />
       <TreeItens
         treeNode={treeNode}

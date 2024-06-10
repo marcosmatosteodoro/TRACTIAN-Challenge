@@ -42,7 +42,11 @@ export const MainContent = ({
               filterByThunderbolt={filterByThunderbolt}
             />
 
-            <Grid gridTemplateColumns={'479px 1fr'} gap={'8px'}>
+            <Grid
+              gridTemplateColumns={{base: '1fr', md: 'auto 1fr', lg: '479px 1fr'}}
+              gridTemplateRows={{base: '250px 1fr', md: '1fr'}}
+              gap={'8px'}
+            >
               <CardContainer padding={'0'}>
                 <TreeNodeContent
                   changeCurrentAsset={changeCurrentAsset}
