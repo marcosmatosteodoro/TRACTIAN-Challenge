@@ -1,7 +1,7 @@
 import { Asset, Company, Location } from '@/domain/models';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import Api from '../../services/Api.service';
+import Api from '../../services/ApiService';
 
 describe('Api', () => {
   let mock: MockAdapter;

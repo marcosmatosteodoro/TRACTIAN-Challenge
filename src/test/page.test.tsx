@@ -3,8 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Home from '../app/page';
 
 // jest.mock('../context/AplicationContext');
-// jest.mock('../hooks/useApi.hook');
-// jest.mock('../hooks/useTreeNode.hook');
+// jest.mock('../hooks/useApiHook');
+// jest.mock('../hooks/useTreeNodeHook');
 // jest.mock('../components/Header', () => () => <div>Header</div>);
 // jest.mock('../components/MainContent', () => () => <div>MainContent</div>);
 

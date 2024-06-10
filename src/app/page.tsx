@@ -1,8 +1,8 @@
 'use client';
 
 import { useAplicationContext } from '@/context/AplicationContext';
-import useApi from '@/hooks/useApi.hook';
-import useTreeNode from '@/hooks/useTreeNode.hook';
+import useApi from '@/hooks/useApiHook';
+import useTreeNode from '@/hooks/useTreeNodeHook';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { Header, MainContent } from '../components';

@@ -2,7 +2,7 @@
 
 import { AplicationContextType } from '@/context/AplicationContext';
 import { Asset, CompanyState, Location } from '@/domain/models';
-import Api from '@/services/Api.service';
+import Api from '@/services/ApiService';
 
 interface UseApiReturnType {
   bringCompanies: () => Promise<void>;
