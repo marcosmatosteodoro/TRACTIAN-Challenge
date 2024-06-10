@@ -15,7 +15,9 @@ describe('GroupAssetText', () => {
   });
 
   it('applies the correct styles to the title', () => {
-    render(<GroupAssetText title="Styled Title">Styled Children</GroupAssetText>);
+    render(
+      <GroupAssetText title="Styled Title">Styled Children</GroupAssetText>,
+    );
 
     const title = screen.getByText('Styled Title');
     expect(title).toHaveStyle('font-weight: 600');
@@ -25,7 +27,9 @@ describe('GroupAssetText', () => {
   });
 
   it.skip('applies the correct styles to the children container', () => {
-    render(<GroupAssetText title="Styled Title">Styled Children</GroupAssetText>);
+    render(
+      <GroupAssetText title="Styled Title">Styled Children</GroupAssetText>,
+    );
 
     const childrenContainer = screen.getByText('Styled Children').parentElement;
     expect(childrenContainer).toHaveStyle('display: flex');

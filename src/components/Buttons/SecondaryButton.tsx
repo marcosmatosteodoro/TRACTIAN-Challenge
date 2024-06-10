@@ -50,15 +50,13 @@ export const SecondaryButton = ({
         color: whiteColor,
       }}
       sx={{
-        'span': {
+        span: {
           margin: { base: 0, md: 'initial' },
         },
       }}
       data-testid="secondary-button"
     >
-      <Text display={{base: 'none', md: 'block'}}>
-        {children}
-      </Text>
+      <Text display={{ base: 'none', md: 'block' }}>{children}</Text>
     </Button>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, CompanyState, Locations, Response, TreeNode } from '@/domain/models';
+import { Assets, CompanyState, Locations, Response } from '@/domain/models';
 import Api from '@/services/Api.service';
 import { useState } from 'react';
 
@@ -14,8 +14,7 @@ interface UseApiReturnType {
 const useApi = (application: AplicationContextType): UseApiReturnType => {
   const api = new Api();
 
-  const { updateCompanies, updateAssets, updateLocations } =
-    application;
+  const { updateCompanies, updateAssets, updateLocations } = application;
 
   const [companies, setCompanies] = useState<Response<CompanyState[]>>(
     {} as Response<CompanyState[]>,
@@ -27,10 +26,6 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
 
   const [locations, setLocations] = useState<Response<Locations[]>>(
     {} as Response<Locations[]>,
-  );
-
-  const [treeNode, setTreeNode] = useState<Response<TreeNode[]>>(
-    {} as Response<TreeNode[]>,
   );
 
   const bringCompanies = async () => {
@@ -70,6 +65,7 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
       setLocations((prevState) => ({ ...prevState, loading: false }));
     }
   };
+
   const bringAssets = async (id: string) => {
     setAssets({ loading: true, error: null, data: {} as Assets[] });
     try {
@@ -90,6 +86,7 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
       setAssets((prevState) => ({ ...prevState, loading: false }));
     }
   };
+
   return {
     bringCompanies,
     bringAssets,

@@ -17,7 +17,7 @@ describe('RowContainer', () => {
         filter={mockFilter}
         filterByAlert={() => {}}
         filterByThunderbolt={() => {}}
-      />
+      />,
     );
 
     const ativosText = screen.getByText('Ativos');
@@ -40,7 +40,7 @@ describe('RowContainer', () => {
         filter={mockFilter}
         filterByAlert={() => {}}
         filterByThunderbolt={mockFilterByThunderbolt}
-      />
+      />,
     );
 
     const thunderboltButton = screen.getByText('Sensor de Energia');
@@ -58,7 +58,7 @@ describe('RowContainer', () => {
         filter={mockFilter}
         filterByAlert={mockFilterByAlert}
         filterByThunderbolt={() => {}}
-      />
+      />,
     );
 
     const alertButton = screen.getByText('Critico');

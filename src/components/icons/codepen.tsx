@@ -9,18 +9,18 @@ type CodepenIconProps = {
 export const CodepenIcon = (props: CodepenIconProps) => {
   return (
     <chakra.svg
-    width="128"
-    height="128"
-    viewBox="0 0 128 128"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <rect width="128" height="128" fill="none" />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M117,73.204L103.24,64L117,54.796V73.204z
+      width="128"
+      height="128"
+      viewBox="0 0 128 128"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <rect width="128" height="128" fill="none" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M117,73.204L103.24,64L117,54.796V73.204z
         M69.5,112.22V86.568L93.348,70.62l19.248,12.872L69.5,112.22z
         M64,77.012L44.548,64L64,50.988L83.456,64L64,77.012z
         M58.5,112.22L15.404,83.492L34.656,70.62L58.5,86.568V112.22z
@@ -49,8 +49,8 @@ export const CodepenIcon = (props: CodepenIconProps) => {
         c0.044-0.088,0.088-0.176,0.124-0.264c0.052-0.136,0.096-0.272,0.14-0.404c0.028-0.088,0.064-0.176,0.088-0.268
         c0.04-0.152,0.068-0.304,0.096-0.46c0.012-0.08,0.032-0.16,0.044-0.236c0.032-0.24,0.048-0.48,0.048-0.72v-39
         C128,44.256,127.984,44.016,127.952,43.784z"
-      fill={props.color?? "#2188FF"}
-    />
-  </chakra.svg>
-  )
+        fill={props.color ?? '#2188FF'}
+      />
+    </chakra.svg>
+  );
 };

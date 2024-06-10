@@ -29,5 +29,4 @@ describe('AssetDetails', () => {
     const boltIcon = screen.getByTestId('bolt-icon');
     expect(boltIcon).toBeInTheDocument();
   });
-
 });

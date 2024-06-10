@@ -18,7 +18,9 @@ describe('AssetDetaillsContent', () => {
     render(<AssetDetaillsContent />);
     const equipmentType = screen.getByText('Tipo de Equipamenteo');
     expect(equipmentType).toBeInTheDocument();
-    expect(equipmentType?.nextSibling?.textContent).toBe('Motor Elétrico (Trifásico)');
+    expect(equipmentType?.nextSibling?.textContent).toBe(
+      'Motor Elétrico (Trifásico)',
+    );
   });
 
   it.skip('renders the responsible correctly', () => {

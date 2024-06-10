@@ -13,9 +13,9 @@ export const AssetDetails = ({ currentAsset }: AssetDetailsProps) => {
   const choiceStatus = (asset: Assets) => {
     const size = '8px';
 
-    if(!asset?.id) {
-      return (<></>)
-    };
+    if (!asset?.id) {
+      return <></>;
+    }
 
     switch (asset?.status) {
       case 'operating':

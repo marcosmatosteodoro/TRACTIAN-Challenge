@@ -13,7 +13,7 @@ describe('Header', () => {
     render(
       <ChakraProvider>
         <Header companies={[]} update={() => {}} />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const component = screen.getByTestId('header-container');
     expect(component).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('Header', () => {
     render(
       <ChakraProvider>
         <Header companies={[]} update={() => {}} />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const logoIcon = screen.getByTestId('logo-icon');
     expect(logoIcon).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('Header', () => {
     render(
       <ChakraProvider>
         <Header companies={mockCompanies} update={() => {}} />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const companyButtons = screen.getAllByTestId('company-button');
     expect(companyButtons).toHaveLength(2);
@@ -43,7 +43,7 @@ describe('Header', () => {
     render(
       <ChakraProvider>
         <Header companies={[]} update={() => {}} />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const loadingSpinner = screen.getByTestId('loading-spinner');
     expect(loadingSpinner).toBeInTheDocument();

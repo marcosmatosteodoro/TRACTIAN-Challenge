@@ -4,7 +4,7 @@ import { AssetDetaillsTop } from '../../../../../components/AssetDetails/compone
 describe('AssetDetaillsTop', () => {
   it('renders with the correct title', () => {
     render(
-      <AssetDetaillsTop title="Test Title" statusIcon={<span>Icon</span>} />
+      <AssetDetaillsTop title="Test Title" statusIcon={<span>Icon</span>} />,
     );
 
     expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe('AssetDetaillsTop', () => {
 
   it('applies the correct styles to the title', () => {
     render(
-      <AssetDetaillsTop title="Styled Title" statusIcon={<span>Icon</span>} />
+      <AssetDetaillsTop title="Styled Title" statusIcon={<span>Icon</span>} />,
     );
 
     const title = screen.getByText('Styled Title');
@@ -31,7 +31,7 @@ describe('AssetDetaillsTop', () => {
 
   it.skip('applies the correct styles to the component container', () => {
     render(
-      <AssetDetaillsTop title="Styled Title" statusIcon={<span>Icon</span>} />
+      <AssetDetaillsTop title="Styled Title" statusIcon={<span>Icon</span>} />,
     );
 
     const container = screen.getByText('Styled Title').parentElement;

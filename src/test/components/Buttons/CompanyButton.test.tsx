@@ -9,11 +9,7 @@ describe('CompanyButton', () => {
   });
 
   it('renders with the correct text', () => {
-    render(
-      <CompanyButton click={clickMock}>
-        Click me
-      </CompanyButton>
-    );
+    render(<CompanyButton click={clickMock}>Click me</CompanyButton>);
 
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
@@ -22,7 +18,7 @@ describe('CompanyButton', () => {
     render(
       <CompanyButton active={true} click={clickMock}>
         Active Button
-      </CompanyButton>
+      </CompanyButton>,
     );
 
     const button = screen.getByTestId('company-button');
@@ -33,7 +29,7 @@ describe('CompanyButton', () => {
     render(
       <CompanyButton active={false} click={clickMock}>
         Inactive Button
-      </CompanyButton>
+      </CompanyButton>,
     );
 
     const button = screen.getByTestId('company-button');
@@ -41,11 +37,7 @@ describe('CompanyButton', () => {
   });
 
   it('calls the click function when clicked', () => {
-    render(
-      <CompanyButton click={clickMock}>
-        Clickable Button
-      </CompanyButton>
-    );
+    render(<CompanyButton click={clickMock}>Clickable Button</CompanyButton>);
 
     const button = screen.getByTestId('company-button');
     fireEvent.click(button);
@@ -56,7 +48,7 @@ describe('CompanyButton', () => {
     render(
       <CompanyButton disableHover={false} click={clickMock}>
         Hoverable Button
-      </CompanyButton>
+      </CompanyButton>,
     );
 
     const button = screen.getByTestId('company-button');
@@ -68,7 +60,7 @@ describe('CompanyButton', () => {
     render(
       <CompanyButton disableHover={true} click={clickMock}>
         Non-hoverable Button
-      </CompanyButton>
+      </CompanyButton>,
     );
 
     const button = screen.getByTestId('company-button');
@@ -77,21 +69,13 @@ describe('CompanyButton', () => {
   });
 
   it('renders the "Unit" text correctly on medium screens and larger', () => {
-    render(
-      <CompanyButton click={clickMock}>
-        Click me
-      </CompanyButton>
-    );
+    render(<CompanyButton click={clickMock}>Click me</CompanyButton>);
 
     expect(screen.getByText('Unit')).toHaveStyle('display: block');
   });
 
   it.skip('does not render the "Unit" text on small screens', () => {
-    render(
-      <CompanyButton click={clickMock}>
-        Click me
-      </CompanyButton>
-    );
+    render(<CompanyButton click={clickMock}>Click me</CompanyButton>);
 
     expect(screen.getByText('Unit')).toHaveStyle('display: none');
   });

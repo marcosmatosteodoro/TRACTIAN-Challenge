@@ -10,7 +10,7 @@ export const AssetDetaillsContent = () => {
       <Grid
         w={'100%'}
         gap={'24px'}
-        gridTemplateColumns={{base: '1fr 1fr', xl: '336px 1fr'}}
+        gridTemplateColumns={{ base: '1fr 1fr', xl: '336px 1fr' }}
       >
         <Box
           w={'100%'}

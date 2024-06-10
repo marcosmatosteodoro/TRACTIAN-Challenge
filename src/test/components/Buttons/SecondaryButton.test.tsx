@@ -12,7 +12,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="thunderbolt" active={false} onClick={clickMock}>
         Click me
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     expect(screen.getByText('Click me')).toBeInTheDocument();
@@ -22,7 +22,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" active={true} onClick={clickMock}>
         Active Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     const button = screen.getByTestId('secondary-button');
@@ -34,7 +34,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" active={false} onClick={clickMock}>
         Inactive Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     const button = screen.getByTestId('secondary-button');
@@ -46,7 +46,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="thunderbolt" active={false} onClick={clickMock}>
         Clickable Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     const button = screen.getByTestId('secondary-button');
@@ -58,7 +58,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" active={false} onClick={clickMock}>
         Hoverable Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     const button = screen.getByTestId('secondary-button');
@@ -71,25 +71,29 @@ describe('SecondaryButton', () => {
     const { rerender } = render(
       <SecondaryButton icon="thunderbolt" active={false} onClick={clickMock}>
         Thunderbolt Icon Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
-    expect(screen.getByTestId('secondary-button').querySelector('svg')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('secondary-button').querySelector('svg'),
+    ).toBeInTheDocument();
 
     rerender(
       <SecondaryButton icon="infoIcon" active={false} onClick={clickMock}>
         Info Icon Button
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
-    expect(screen.getByTestId('secondary-button').querySelector('svg')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('secondary-button').querySelector('svg'),
+    ).toBeInTheDocument();
   });
 
   it('renders the text correctly on medium screens and larger', () => {
     render(
       <SecondaryButton icon="infoIcon" active={false} onClick={clickMock}>
         Click me
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     expect(screen.getByText('Click me')).toHaveStyle('display: block');
@@ -99,7 +103,7 @@ describe('SecondaryButton', () => {
     render(
       <SecondaryButton icon="infoIcon" active={false} onClick={clickMock}>
         Click me
-      </SecondaryButton>
+      </SecondaryButton>,
     );
 
     expect(screen.getByText('Click me')).toHaveStyle('display: none');

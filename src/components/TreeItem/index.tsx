@@ -89,7 +89,15 @@ export const TreeItem = ({
       );
     }
 
-    return <CodepenIcon data-testid="codepen-icon" color={isActive ? '#ffffff' : '#2188FF'} w={size} h={size} ml={1} />;
+    return (
+      <CodepenIcon
+        data-testid="codepen-icon"
+        color={isActive ? '#ffffff' : '#2188FF'}
+        w={size}
+        h={size}
+        ml={1}
+      />
+    );
   };
 
   const choiceStatus = (asset: TreeItemProps['item']['asset']) => {

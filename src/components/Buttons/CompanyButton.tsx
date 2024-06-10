@@ -22,7 +22,14 @@ export const CompanyButton = ({
     <Button
       bg={active === true ? primaryColor : '#023B78'}
       color={'#ffffff'}
-      leftIcon={<GoldIcon h={'16px'} w={'16px'} display={{base: 'none', md: 'block'}} m={{base: '0px', md: 'initial'}} />}
+      leftIcon={
+        <GoldIcon
+          h={'16px'}
+          w={'16px'}
+          display={{ base: 'none', md: 'block' }}
+          m={{ base: '0px', md: 'initial' }}
+        />
+      }
       onClick={click}
       _hover={
         !disableHover
@@ -35,7 +42,7 @@ export const CompanyButton = ({
       data-testid="company-button"
     >
       {children}
-      <Text ms={1} display={{base: 'none', md: 'block'}}>
+      <Text ms={1} display={{ base: 'none', md: 'block' }}>
         Unit
       </Text>
     </Button>

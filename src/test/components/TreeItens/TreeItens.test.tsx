@@ -52,7 +52,13 @@ describe('TreeItems', () => {
   });
 
   it('renders "No items found" message when no items are present', () => {
-    render(<TreeItens treeNode={[]} currentAsset={mockCurrentAsset} changeCurrentAsset={mockChangeCurrentAsset} />);
+    render(
+      <TreeItens
+        treeNode={[]}
+        currentAsset={mockCurrentAsset}
+        changeCurrentAsset={mockChangeCurrentAsset}
+      />,
+    );
 
     const noItemsFoundText = screen.getByText('No items found');
     expect(noItemsFoundText).toBeInTheDocument();

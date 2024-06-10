@@ -47,9 +47,7 @@ describe('TreeNodeContent', () => {
   };
 
   it.skip('renders component correctly', () => {
-    render(
-      <TreeNodeContent {...mockProps} />
-    );
+    render(<TreeNodeContent {...mockProps} />);
 
     const searchInput = screen.getByTestId('search-input');
     const treeItemText = screen.getByTestId('tree-item-text');
@@ -59,9 +57,7 @@ describe('TreeNodeContent', () => {
   });
 
   it.skip('executes filterBySearch when search input changes', () => {
-    render(
-      <TreeNodeContent {...mockProps} />
-    );
+    render(<TreeNodeContent {...mockProps} />);
 
     const searchInput = screen.getByTestId('search-input');
     fireEvent.change(searchInput, { target: { value: 'Test' } });
@@ -70,9 +66,7 @@ describe('TreeNodeContent', () => {
   });
 
   it.skip('executes changeCurrentAsset when a tree item is clicked', () => {
-    render(
-      <TreeNodeContent {...mockProps} />
-    );
+    render(<TreeNodeContent {...mockProps} />);
 
     const treeItemButton = screen.getByRole('button');
     fireEvent.click(treeItemButton);

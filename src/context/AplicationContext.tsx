@@ -1,6 +1,12 @@
 'use client';
 
-import { Assets, Company, CompanyState, Locations, TreeNode } from '@/domain/models';
+import {
+  Assets,
+  Company,
+  CompanyState,
+  Locations,
+  TreeNode,
+} from '@/domain/models';
 import React, { createContext, useContext, useState } from 'react';
 
 export type AplicationContextType = {

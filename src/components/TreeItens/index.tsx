@@ -53,8 +53,9 @@ export const TreeItens = (props: TreeItensProps) => {
 
   return (
     <Box px={'8px'} py={'10px'}>
-      {findItem ? renderTreeItems(props)
-      : (
+      {findItem ? (
+        renderTreeItems(props)
+      ) : (
         <Box>
           <Text
             fontSize={'16px'}

@@ -1,7 +1,13 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, Locations, TreeNode, TreeNodeFilters, TreeNodeFinder } from '@/domain/models';
+import {
+  Assets,
+  Locations,
+  TreeNode,
+  TreeNodeFilters,
+  TreeNodeFinder,
+} from '@/domain/models';
 import { useState } from 'react';
 
 interface UseTreeNodeReturnType {
@@ -31,7 +37,11 @@ const useTreeNode = ({
   const getTreeNode = () => {
     updateTreeNode({} as TreeNode[]);
     setSearchList([] as Assets[]);
-    setFilters({alert: false, thunderbolt: false, search: ''} as TreeNodeFilters)
+    setFilters({
+      alert: false,
+      thunderbolt: false,
+      search: '',
+    } as TreeNodeFilters);
 
     const treeNode = buildTreeNode(locations, assets);
     updateTreeNode(treeNode as TreeNode[]);
@@ -160,7 +170,7 @@ const useTreeNode = ({
 
   const filterByAlert = () => {
     const filters = { ...filter, alert: !filter.alert };
-    const list = getSearcFilter(filters)
+    const list = getSearcFilter(filters);
 
     findAssets({ assets: list, treeNode, update: true });
   };
@@ -201,7 +211,7 @@ const useTreeNode = ({
           update: false,
         });
 
-        if(active) {
+        if (active) {
           response = true;
         }
 
@@ -219,25 +229,32 @@ const useTreeNode = ({
   };
 
   const getSearcFilter = (filters: TreeNodeFilters) => {
-    const {thunderbolt, alert, search} = filters;
+    const { thunderbolt, alert, search } = filters;
 
-    if(!alert && !thunderbolt && search === '') {
+    if (!alert && !thunderbolt && search === '') {
       setFilters(filters);
       return searchList;
     }
 
     const listWithoutSearch = searchList.filter((asset) => {
       const validationAlert = alert && asset?.status === 'alert';
-      const validationThunderbolt = thunderbolt && asset?.status === 'operating';
-      const validationSearch = search && !!search
+      const validationThunderbolt =
+        thunderbolt && asset?.status === 'operating';
+      const validationSearch = search && !!search;
 
-      const validationAlertOrThunderbolt = validationAlert || validationThunderbolt;
+      const validationAlertOrThunderbolt =
+        validationAlert || validationThunderbolt;
 
-      if(validationSearch) {
-        const validationText =  asset?.name.toLowerCase().includes(search.toLowerCase());
+      if (validationSearch) {
+        const validationText = asset?.name
+          .toLowerCase()
+          .includes(search.toLowerCase());
         const validationOnlySearch = !alert && !thunderbolt;
 
-        if (validationText && (validationOnlySearch || validationAlertOrThunderbolt)) {
+        if (
+          validationText &&
+          (validationOnlySearch || validationAlertOrThunderbolt)
+        ) {
           return true;
         }
       } else {
@@ -246,13 +263,13 @@ const useTreeNode = ({
         }
       }
 
-      return false
+      return false;
     });
 
     setFilters(filters);
 
     return listWithoutSearch;
-  }
+  };
   return {
     getTreeNode,
     filterByThunderbolt,

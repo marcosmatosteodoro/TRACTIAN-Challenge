@@ -1,7 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import { MainContent } from '../../../components';
-import { Assets, Company, TreeNode, TreeNodeFilters } from '../../../domain/models';
+import {
+  Assets,
+  Company,
+  TreeNode,
+  TreeNodeFilters,
+} from '../../../domain/models';
 
 describe('MainContent', () => {
   const mockCompany: Company = { id: '1', name: 'Company A' };
@@ -17,14 +22,30 @@ describe('MainContent', () => {
     {
       location: null,
       asset: null,
-      childrens: [{ location: null, asset: null, childrens: [], startOpen: false, hidden: false }],
+      childrens: [
+        {
+          location: null,
+          asset: null,
+          childrens: [],
+          startOpen: false,
+          hidden: false,
+        },
+      ],
       startOpen: false,
       hidden: false,
     },
     {
       location: null,
       asset: null,
-      childrens: [{ location: null, asset: null, childrens: [], startOpen: false, hidden: false }],
+      childrens: [
+        {
+          location: null,
+          asset: null,
+          childrens: [],
+          startOpen: false,
+          hidden: false,
+        },
+      ],
       startOpen: false,
       hidden: false,
     },
@@ -48,7 +69,7 @@ describe('MainContent', () => {
           filterByThunderbolt={() => {}}
           filterBySearch={() => {}}
         />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const component = screen.getByTestId('main-content');
     expect(component).toBeInTheDocument();
@@ -67,7 +88,7 @@ describe('MainContent', () => {
           filterByThunderbolt={() => {}}
           filterBySearch={() => {}}
         />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const loadingSpinner = screen.getByTestId('loading-spinner');
     expect(loadingSpinner).toBeInTheDocument();
@@ -86,7 +107,7 @@ describe('MainContent', () => {
           filterByThunderbolt={() => {}}
           filterBySearch={() => {}}
         />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const rowContainer = screen.getByTestId('row-container');
     expect(rowContainer).toBeInTheDocument();
@@ -105,7 +126,7 @@ describe('MainContent', () => {
           filterByThunderbolt={() => {}}
           filterBySearch={() => {}}
         />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const treeNodeContent = screen.getByTestId('tree-node-content');
     expect(treeNodeContent).toBeInTheDocument();
@@ -124,7 +145,7 @@ describe('MainContent', () => {
           filterByThunderbolt={() => {}}
           filterBySearch={() => {}}
         />
-      </ChakraProvider>
+      </ChakraProvider>,
     );
     const assetDetails = screen.getByTestId('asset-details');
     expect(assetDetails).toBeInTheDocument();
