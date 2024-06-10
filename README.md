@@ -26,14 +26,14 @@ npm run dev
 
 ## Imagens do projeto
 <p align="center">
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/docs/images/foto1.jpeg" width="45%" />
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challengedocs/docs/images/foto2.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto1.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto2.jpeg" width="45%" />
   <br>
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challengedocs/docs/images/foto3.jpeg" width="45%" />
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challengedocs/docs/images/foto4.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto3.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto4.jpeg" width="45%" />
   <br>
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challengedocs/docs/images/foto5.jpeg" width="45%" />
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challengedocs/docs/images/foto6.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto5.jpeg" width="45%" />
+  <img src="https://tractian-challenge-alpha.vercel.app/images/foto6.jpeg" width="45%" />
 </p>
 
 <!-- ## Video do projeto -->
