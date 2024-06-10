@@ -8,3 +8,14 @@ export type TreeNode = {
   startOpen: boolean;
   hidden: boolean;
 };
+
+export type TreeNodeFinder = {
+  data: TreeNode[];
+  active: boolean;
+};
+
+export type TreeNodeFilters = {
+  thunderbolt: boolean;
+  alert: boolean;
+  search: boolean;
+};

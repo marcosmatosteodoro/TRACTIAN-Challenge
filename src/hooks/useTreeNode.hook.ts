@@ -1,7 +1,7 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, Locations, TreeNode } from '@/domain/models';
+import { Assets, Locations, TreeNode, TreeNodeFilters, TreeNodeFinder } from '@/domain/models';
 import { useState } from 'react';
 
 interface UseTreeNodeReturnType {
@@ -14,17 +14,6 @@ interface UseTreeNodeReturnType {
 
 type useTreeNodeProps = {
   application: AplicationContextType;
-};
-
-type FindAssetsResponse = {
-  data: TreeNode[];
-  active: boolean;
-};
-
-export type TreeNodeFilters = {
-  thunderbolt: boolean;
-  alert: boolean;
-  search: boolean;
 };
 
 const useTreeNode = ({
@@ -191,7 +180,7 @@ const useTreeNode = ({
     assets: Assets[];
     treeNode: TreeNode[];
     update?: boolean;
-  }): FindAssetsResponse => {
+  }): TreeNodeFinder => {
     let response = false;
 
     const newTreeNode: TreeNode[] = treeNode.map((node: TreeNode) => {

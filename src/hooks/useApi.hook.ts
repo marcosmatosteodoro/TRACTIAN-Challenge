@@ -1,15 +1,9 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, CompanyState, Locations, TreeNode } from '@/domain/models';
+import { Assets, CompanyState, Locations, Response, TreeNode } from '@/domain/models';
 import Api from '@/services/Api.service';
 import { useState } from 'react';
-
-type Response<T> = {
-  loading: boolean;
-  error: string | null;
-  data: T;
-};
 
 interface UseApiReturnType {
   bringCompanies: () => Promise<void>;

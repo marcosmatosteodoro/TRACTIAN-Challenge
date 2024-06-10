@@ -1,7 +1,6 @@
 'use client';
 
-import { Assets, Company, TreeNode } from '@/domain/models';
-import { TreeNodeFilters } from '@/hooks/useTreeNode.hook';
+import { Assets, Company, TreeNode, TreeNodeFilters } from '@/domain/models';
 import { Container, Grid } from '@chakra-ui/react';
 import { AssetDetails } from '../AssetDetails';
 import { CardContainer } from '../CardContainer';
