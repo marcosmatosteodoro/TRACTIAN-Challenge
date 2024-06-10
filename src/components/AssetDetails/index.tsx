@@ -1,16 +1,16 @@
 'use client';
 
-import { Assets } from '@/domain/models';
+import { Asset } from '@/domain/models';
 import { Box } from '@chakra-ui/react';
 import { BoltIcon, ElipseIcon } from '../icons';
 import { AssetDetaillsContent, AssetDetaillsTop } from './components';
 
 type AssetDetailsProps = {
-  currentAsset: Assets;
+  currentAsset: Asset;
 };
 
 export const AssetDetails = ({ currentAsset }: AssetDetailsProps) => {
-  const choiceStatus = (asset: Assets) => {
+  const choiceStatus = (asset: Asset) => {
     const size = '8px';
 
     if (!asset?.id) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Assets, Company, TreeNode, TreeNodeFilters } from '@/domain/models';
+import { Asset, Company, TreeNode, TreeNodeFilters } from '@/domain/models';
 import { Container, Grid } from '@chakra-ui/react';
 import { AssetDetails } from '../AssetDetails';
 import { CardContainer } from '../CardContainer';
@@ -10,7 +10,7 @@ import { TreeNodeContent } from '../TreeNodeContent';
 
 type MainProps = {
   currentCompany: Company;
-  currentAsset: Assets;
+  currentAsset: Asset;
   treeNode: TreeNode[];
   filter: TreeNodeFilters;
   changeCurrentAsset: (id: string) => void;

@@ -1,4 +1,4 @@
-import { Assets, TreeNode } from '@/domain/models';
+import { Asset, TreeNode } from '@/domain/models';
 import { Box, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { TreeItem } from '../TreeItem';
@@ -6,7 +6,7 @@ import { TreeItem } from '../TreeItem';
 type TreeItensProps = {
   treeNode: TreeNode[];
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Assets;
+  currentAsset: Asset;
 };
 
 const renderTreeItems = ({

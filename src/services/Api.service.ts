@@ -1,4 +1,4 @@
-import { Assets, Company, Locations } from '@/domain/models';
+import { Asset, Company, Location } from '@/domain/models';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 class Api {
@@ -32,12 +32,12 @@ class Api {
     return await this.GET<Company[]>(this.endpoins.companies());
   }
 
-  public async locations(id: string): Promise<Locations[]> {
-    return await this.GET<Locations[]>(this.endpoins.locations(id));
+  public async locations(id: string): Promise<Location[]> {
+    return await this.GET<Location[]>(this.endpoins.locations(id));
   }
 
-  public async assets(id: string): Promise<Assets[]> {
-    return await this.GET<Assets[]>(this.endpoins.assets(id));
+  public async assets(id: string): Promise<Asset[]> {
+    return await this.GET<Asset[]>(this.endpoins.assets(id));
   }
 }
 

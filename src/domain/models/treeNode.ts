@@ -1,9 +1,9 @@
-import { Assets } from './assets';
-import { Locations } from './locations';
+import { Asset } from './asset';
+import { Location } from './location';
 
 export type TreeNode = {
-  location: Locations | null;
-  asset: Assets | null;
+  location: Location | null;
+  asset: Asset | null;
   childrens: TreeNode[];
   startOpen: boolean;
   hidden: boolean;

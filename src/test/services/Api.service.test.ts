@@ -1,4 +1,4 @@
-import { Assets, Company, Locations } from '@/domain/models';
+import { Asset, Company, Location } from '@/domain/models';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Api from '../../services/Api.service';
@@ -36,7 +36,7 @@ describe('Api', () => {
   });
 
   it('should fetch locations', async () => {
-    const locationsData: Locations[] = [
+    const locationsData: Location[] = [
       { id: '1', name: 'Location 1', parentId: null },
       { id: '2', name: 'Location 2', parentId: '1' },
     ];
@@ -51,7 +51,7 @@ describe('Api', () => {
   });
 
   it('should fetch assets', async () => {
-    const assetsData: Assets[] = [
+    const assetsData: Asset[] = [
       {
         id: '1',
         name: 'Asset 1',

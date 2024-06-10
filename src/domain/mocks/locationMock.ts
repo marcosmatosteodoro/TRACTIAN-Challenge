@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { Locations } from '../models';
+import { Location } from '../models';
 
-export function mockLocation(): Locations {
+export function mockLocation(): Location {
   return {
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
@@ -9,6 +9,6 @@ export function mockLocation(): Locations {
   };
 }
 
-export const mockLocations = (count: number): Locations[] => {
+export const mockLocations = (count: number): Location[] => {
   return Array.from({ length: count }, mockLocation);
 };

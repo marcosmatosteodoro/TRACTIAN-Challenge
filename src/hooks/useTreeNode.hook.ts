@@ -2,8 +2,8 @@
 
 import { AplicationContextType } from '@/context/AplicationContext';
 import {
-  Assets,
-  Locations,
+  Asset,
+  Location,
   TreeNode,
   TreeNodeFilters,
   TreeNodeFinder,
@@ -31,12 +31,12 @@ const useTreeNode = ({
     search: '',
   } as TreeNodeFilters);
 
-  const [searchList, setSearchList] = useState<Assets[]>([] as Assets[]);
+  const [searchList, setSearchList] = useState<Asset[]>([] as Asset[]);
   const { treeNode, locations, assets, updateTreeNode } = application;
 
   const getTreeNode = () => {
     updateTreeNode({} as TreeNode[]);
-    setSearchList([] as Assets[]);
+    setSearchList([] as Asset[]);
     setFilters({
       alert: false,
       thunderbolt: false,
@@ -47,10 +47,10 @@ const useTreeNode = ({
     updateTreeNode(treeNode as TreeNode[]);
   };
 
-  const buildTreeNode = (locations: Locations[], assets: Assets[]) => {
+  const buildTreeNode = (locations: Location[], assets: Asset[]) => {
     const treeNode: TreeNode[] = [];
 
-    function getLocationsTreeNode(locations: Locations[], parentId: boolean) {
+    function getLocationsTreeNode(locations: Location[], parentId: boolean) {
       const response = [] as TreeNode[];
 
       locations.forEach((location) => {
@@ -99,9 +99,9 @@ const useTreeNode = ({
       return response;
     }
 
-    function getAssetsTreeNode(locationAssets: Assets[], parentId: boolean) {
+    function getAssetsTreeNode(locationAssets: Asset[], parentId: boolean) {
       const response = [] as TreeNode[];
-      const newSearchArray = searchList as Assets[];
+      const newSearchArray = searchList as Asset[];
 
       locationAssets.forEach((asset) => {
         if (
@@ -187,7 +187,7 @@ const useTreeNode = ({
     treeNode,
     update = false,
   }: {
-    assets: Assets[];
+    assets: Asset[];
     treeNode: TreeNode[];
     update?: boolean;
   }): TreeNodeFinder => {

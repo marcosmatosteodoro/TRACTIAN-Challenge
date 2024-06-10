@@ -1,7 +1,7 @@
 'use client';
 
 import { AplicationContextType } from '@/context/AplicationContext';
-import { Assets, CompanyState, Locations, Response } from '@/domain/models';
+import { Asset, CompanyState, Location, Response } from '@/domain/models';
 import Api from '@/services/Api.service';
 import { useState } from 'react';
 
@@ -20,12 +20,12 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
     {} as Response<CompanyState[]>,
   );
 
-  const [assets, setAssets] = useState<Response<Assets[]>>(
-    {} as Response<Assets[]>,
+  const [assets, setAssets] = useState<Response<Asset[]>>(
+    {} as Response<Asset[]>,
   );
 
-  const [locations, setLocations] = useState<Response<Locations[]>>(
-    {} as Response<Locations[]>,
+  const [locations, setLocations] = useState<Response<Location[]>>(
+    {} as Response<Location[]>,
   );
 
   const bringCompanies = async () => {
@@ -50,11 +50,11 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
   };
 
   const bringLocations = async (id: string) => {
-    setLocations({ loading: true, error: null, data: {} as Locations[] });
+    setLocations({ loading: true, error: null, data: {} as Location[] });
     try {
       const data = await api.locations(id);
 
-      updateLocations(data as Locations[]);
+      updateLocations(data as Location[]);
       setLocations((prevState) => ({ ...prevState, data: data }));
     } catch (err) {
       setLocations((prevState) => ({
@@ -67,7 +67,7 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
   };
 
   const bringAssets = async (id: string) => {
-    setAssets({ loading: true, error: null, data: {} as Assets[] });
+    setAssets({ loading: true, error: null, data: {} as Asset[] });
     try {
       const response = await api.assets(id);
       const data = response.map((item, index) => ({
@@ -75,7 +75,7 @@ const useApi = (application: AplicationContextType): UseApiReturnType => {
         current: index === 0,
       }));
 
-      updateAssets(data as Assets[]);
+      updateAssets(data as Asset[]);
       setAssets((prevState) => ({ ...prevState, data: data }));
     } catch (err) {
       setAssets((prevState) => ({

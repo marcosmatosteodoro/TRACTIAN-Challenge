@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Assets, Locations, Response, TreeNodeFinder } from '../models';
+import { Asset, Location, Response, TreeNodeFinder } from '../models';
 import { mockAsset } from './assetsMock';
 import { mockLocation } from './locationMock';
 import { mockTreeNodeFinder } from './treeNodeFinderMock';
@@ -12,11 +12,11 @@ export function mockResponse<T>(dataGenerator: () => T): Response<T> {
   };
 }
 
-export function mockAssetResponse(): Response<Assets> {
+export function mockAssetResponse(): Response<Asset> {
   return mockResponse(mockAsset);
 }
 
-export function mockLocationResponse(): Response<Locations> {
+export function mockLocationResponse(): Response<Location> {
   return mockResponse(mockLocation);
 }
 

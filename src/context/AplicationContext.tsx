@@ -1,27 +1,27 @@
 'use client';
 
 import {
-  Assets,
+  Asset,
   Company,
   CompanyState,
-  Locations,
+  Location,
   TreeNode,
 } from '@/domain/models';
 import React, { createContext, useContext, useState } from 'react';
 
 export type AplicationContextType = {
   updateCompanies: (data: CompanyState[]) => void;
-  updateAssets: (data: Assets[]) => void;
-  updateLocations: (data: Locations[]) => void;
+  updateAssets: (data: Asset[]) => void;
+  updateLocations: (data: Location[]) => void;
   updateCurrentCompany: (id: string) => void;
   updateCurrentAsset: (id: string) => void;
   updateTreeNode: (data: TreeNode[]) => void;
   treeNode: TreeNode[];
   companies: CompanyState[];
-  assets: Assets[];
-  locations: Locations[];
+  assets: Asset[];
+  locations: Location[];
   currentCompany: Company;
-  currentAsset: Assets;
+  currentAsset: Asset;
 };
 
 const AplicationContext = createContext<AplicationContextType | undefined>(
@@ -32,12 +32,12 @@ export const AplicationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [currentCompany, setCurrentCompany] = useState<Company>({} as Company);
-  const [currentAsset, setCurrentAsset] = useState<Assets>({} as Assets);
+  const [currentAsset, setCurrentAsset] = useState<Asset>({} as Asset);
   const [companies, setCompanies] = useState<CompanyState[]>(
     [] as CompanyState[],
   );
-  const [assets, setAssets] = useState<Assets[]>([] as Assets[]);
-  const [locations, setLocations] = useState<Locations[]>([] as Locations[]);
+  const [assets, setAssets] = useState<Asset[]>([] as Asset[]);
+  const [locations, setLocations] = useState<Location[]>([] as Location[]);
   const [treeNode, setTreeNode] = useState<TreeNode[]>([] as TreeNode[]);
 
   const updateCompanies = (data: CompanyState[]) => {
@@ -48,11 +48,11 @@ export const AplicationProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const updateAssets = (data: Assets[]) => {
+  const updateAssets = (data: Asset[]) => {
     setAssets(data);
   };
 
-  const updateLocations = (data: Locations[]) => {
+  const updateLocations = (data: Location[]) => {
     setLocations(data);
   };
 
@@ -76,7 +76,7 @@ export const AplicationProvider: React.FC<{ children: React.ReactNode }> = ({
       throw new Error('Asset not found');
     }
 
-    setCurrentAsset(data as Assets);
+    setCurrentAsset(data as Asset);
   };
 
   const updateTreeNode = (data: TreeNode[]) => {

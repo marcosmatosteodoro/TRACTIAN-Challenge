@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AssetDetails } from '../../../components';
-import { Assets } from '../../../domain/models';
+import { Asset } from '../../../domain/models';
 
 describe('AssetDetails', () => {
-  const mockAsset: Assets = {
+  const mockAsset: Asset = {
     id: '1',
     name: 'Test Asset',
     status: 'operating',

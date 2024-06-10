@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import { MainContent } from '../../../components';
 import {
-  Assets,
+  Asset,
   Company,
   TreeNode,
   TreeNodeFilters,
@@ -10,7 +10,7 @@ import {
 
 describe('MainContent', () => {
   const mockCompany: Company = { id: '1', name: 'Company A' };
-  const mockAsset: Assets = {
+  const mockAsset: Asset = {
     id: '1',
     name: 'Test Asset',
     status: 'operating',
@@ -53,7 +53,7 @@ describe('MainContent', () => {
   const mockFilter: TreeNodeFilters = {
     alert: false,
     thunderbolt: false,
-    search: false,
+    search: '',
   };
 
   it.skip('renders component correctly', () => {

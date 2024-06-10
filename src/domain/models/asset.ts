@@ -1,6 +1,6 @@
-import { SensorType, Status } from './';
+import { SensorType, Status } from '.';
 
-export type Assets = {
+export type Asset = {
   id: string;
   name: string;
   locationId: string | null;

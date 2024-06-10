@@ -1,4 +1,4 @@
-import { Assets, TreeNode } from '@/domain/models';
+import { Asset, TreeNode } from '@/domain/models';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TreeItens } from '../../..//components';
 
@@ -27,7 +27,7 @@ describe('TreeItems', () => {
     },
   ];
 
-  const mockCurrentAsset: Assets = {
+  const mockCurrentAsset: Asset = {
     id: '1',
     name: 'Test Asset',
     status: 'operating',

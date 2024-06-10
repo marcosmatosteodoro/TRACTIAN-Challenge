@@ -1,4 +1,4 @@
-import { Assets, TreeNode } from '@/domain/models';
+import { Asset, TreeNode } from '@/domain/models';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ type TreeItemProps = {
   item: TreeNode;
   children?: React.ReactNode;
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Assets;
+  currentAsset: Asset;
 };
 
 type ChevronIconProps = {

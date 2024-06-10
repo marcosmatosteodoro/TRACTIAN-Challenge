@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker';
-import { Assets, SensorType, Status } from '../models';
+import { Asset, SensorType, Status } from '../models';
 
 const sensorTypes: SensorType[] = ['energy', 'vibration', null];
 const statuses: Status[] = ['operating', 'alert', null];
 
-export function mockAsset(): Assets {
+export function mockAsset(): Asset {
   return {
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
@@ -17,6 +17,6 @@ export function mockAsset(): Assets {
   };
 }
 
-export const mockAssets = (count: number): Assets[] => {
+export const mockAssets = (count: number): Asset[] => {
   return Array.from({ length: count }, mockAsset);
 };

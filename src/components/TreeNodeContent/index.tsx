@@ -1,13 +1,13 @@
 'use client';
 
-import { Assets, TreeNode } from '@/domain/models';
+import { Asset, TreeNode } from '@/domain/models';
 import { Box } from '@chakra-ui/react';
 import { SearchInput } from '../SearchInput';
 import { TreeItens } from '../TreeItens';
 
 type TreeNodeContentProps = {
   treeNode: TreeNode[];
-  currentAsset: Assets;
+  currentAsset: Asset;
   changeCurrentAsset: (id: string) => void;
   filterBySearch: (text: string) => void;
 };
