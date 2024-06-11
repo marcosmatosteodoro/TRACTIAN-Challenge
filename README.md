@@ -25,31 +25,15 @@ npm run dev
 ```
 
 ## Imagens do projeto
-
-
-![foto3](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/023844f5-6ddc-48bc-bb76-ef7a4288b32e)
 ![foto1](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/e0276a44-2010-47ea-9c06-13958a268ead)
 ![foto2](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/8bf1ea82-90f4-4172-a791-bd89b560f0de)
+![foto3](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/023844f5-6ddc-48bc-bb76-ef7a4288b32e)
 ![foto6](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/f0bbe15b-cec9-475c-b7c8-5f550248878e)
 ![foto5](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/948ac069-b0ad-451e-b1c8-2ddda1c5c9c8)
 ![foto4](https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/d8c16669-1457-4fa4-82d9-e01c954e04e1)
 
-
-
-<p align="center">
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/e0276a44-2010-47ea-9c06-13958a268ead" width="45%" />
-  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/8bf1ea82-90f4-4172-a791-bd89b560f0de" width="45%" />
-  <br>
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto3.jpeg" width="45%" />
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto4.jpeg" width="45%" />
-  <br>
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto5.jpeg" width="45%" />
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto6.jpeg" width="45%" />
-</p>
-
 ## Video do projeto
 https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/525821f1-6333-434f-962d-d6f0174f184b
-
 
 ## Pontos do melhorarias
 - Cobrir 100% a aplicação de testes unitários
