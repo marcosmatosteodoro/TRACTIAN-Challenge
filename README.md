@@ -37,8 +37,8 @@ npm run dev
 
 
 <p align="center">
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto1.jpeg" width="45%" />
-  <img src="https://tractian-challenge-alpha.vercel.app/images/foto2.jpeg" width="45%" />
+  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/e0276a44-2010-47ea-9c06-13958a268ead" width="45%" />
+  <img src="https://github.com/marcosmatosteodoro/TRACTIAN-Challenge/assets/90528223/8bf1ea82-90f4-4172-a791-bd89b560f0de" width="45%" />
   <br>
   <img src="https://tractian-challenge-alpha.vercel.app/images/foto3.jpeg" width="45%" />
   <img src="https://tractian-challenge-alpha.vercel.app/images/foto4.jpeg" width="45%" />
