@@ -2,7 +2,7 @@
 
 [Leia em Português](README-pt_BR.md)
 
-## Sobre
+## About
 This application has only one page, but with filters by Company from which you can select the Asset you need and filter it by critical or alert status, and if you prefer by typing in the search query.
 <br>
 <br>
