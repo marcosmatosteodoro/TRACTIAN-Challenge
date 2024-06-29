@@ -1,12 +1,11 @@
 import { ApiError, Asset, CompanyState } from '@/domain/models';
-import axios from 'axios';
+import Api from '@/services/ApiService';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 const fetchAssets = async (companyId: string): Promise<Asset[]> => {
-  const { data } = await axios.get<Asset[]>(
-    `https://fake-api.tractian.com/companies/${companyId}/assets`,
-  );
+  const api = new Api();
+  const data = await api.assets(companyId);
   return data;
 };
 

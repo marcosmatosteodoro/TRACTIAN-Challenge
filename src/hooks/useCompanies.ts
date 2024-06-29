@@ -1,5 +1,5 @@
-import { ApiError, Company, CompanyState } from '@/domain/models';
-import axios from 'axios';
+import { ApiError, CompanyState } from '@/domain/models';
+import Api from '@/services/ApiService';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 export type UseCompaniesProps = {
@@ -11,9 +11,9 @@ export type UseCompaniesProps = {
 };
 
 const fetchCompanies = async (): Promise<CompanyState[]> => {
-  const { data } = await axios.get<Company[]>(
-    'https://fake-api.tractian.com/companies',
-  );
+  const api = new Api();
+  const data = await api.companies();
+
   return data.map((company, index) => ({
     ...company,
     current: index === 0,

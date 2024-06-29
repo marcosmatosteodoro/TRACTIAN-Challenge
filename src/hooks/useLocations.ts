@@ -1,11 +1,10 @@
 import { ApiError, CompanyState, Location } from '@/domain/models';
-import axios from 'axios';
+import Api from '@/services/ApiService';
 import { useQuery } from 'react-query';
 
 const fetchLocations = async (companyId: string): Promise<Location[]> => {
-  const { data } = await axios.get<Location[]>(
-    `https://fake-api.tractian.com/companies/${companyId}/locations`,
-  );
+  const api = new Api();
+  const data = await api.locations(companyId);
   return data;
 };
 
