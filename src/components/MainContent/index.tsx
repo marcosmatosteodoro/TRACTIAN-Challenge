@@ -2,6 +2,7 @@
 
 import { useAplicationContext } from '@/context/AplicationContext';
 import useApi from '@/hooks/useApiHook';
+import useAssets from '@/hooks/useAssets';
 import useCompanies from '@/hooks/useCompanies';
 import useTreeNode from '@/hooks/useTreeNodeHook';
 import { Container, Grid } from '@chakra-ui/react';
@@ -15,6 +16,7 @@ import { TreeNodeContent } from '../TreeNodeContent';
 export const MainContent = () => {
   // NOVO
   const { currentCompany } = useCompanies();
+  const assets2 = useAssets(currentCompany);
   //
 
   const application = useAplicationContext();
