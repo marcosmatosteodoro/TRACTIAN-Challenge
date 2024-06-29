@@ -1,4 +1,5 @@
 import { AplicationProvider } from '@/context/AplicationContext';
+import ReactQueryProvider from '@/context/ReactQueryProvider';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import './globals.css';
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        <ChakraProvider>
-          <AplicationProvider>{children}</AplicationProvider>
-        </ChakraProvider>
+        <ReactQueryProvider>
+          <ChakraProvider>
+            <AplicationProvider>{children}</AplicationProvider>
+          </ChakraProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
