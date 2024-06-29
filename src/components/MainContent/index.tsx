@@ -1,41 +1,43 @@
 'use client';
 
-import { Asset, Company, TreeNode, TreeNodeFilters } from '@/domain/models';
+import useAssets from '@/hooks/useAssets';
+import useCompanies from '@/hooks/useCompanies';
+import useLocations from '@/hooks/useLocations';
+import useTreeNode from '@/hooks/useTreeNodeHook';
 import { Container, Grid } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { AssetDetails } from '../AssetDetails';
 import { CardContainer } from '../CardContainer';
 import { Loading } from '../Loading';
 import { RowContainer } from '../RowContainer';
 import { TreeNodeContent } from '../TreeNodeContent';
 
-type MainProps = {
-  currentCompany: Company;
-  currentAsset: Asset;
-  treeNode: TreeNode[];
-  filter: TreeNodeFilters;
-  changeCurrentAsset: (id: string) => void;
-  filterByAlert: () => void;
-  filterBySearch: (text: string) => void;
-  filterByThunderbolt: () => void;
-};
+export const MainContent = () => {
+  const { currentCompany } = useCompanies();
+  const assets = useAssets(currentCompany);
+  const locations = useLocations(currentCompany);
 
-export const MainContent = ({
-  currentCompany,
-  currentAsset,
-  treeNode,
-  filter,
-  changeCurrentAsset,
-  filterByAlert,
-  filterByThunderbolt,
-  filterBySearch,
-}: MainProps) => {
+  const {
+    getTreeNode,
+    filterByAlert,
+    filterBySearch,
+    filterByThunderbolt,
+    filter,
+    treeNode,
+  } = useTreeNode();
+
+  useEffect(() => {
+    if (assets.data && locations.data) {
+      getTreeNode({ assets: assets.data, locations: locations.data });
+    }
+  }, [assets.data, locations.data]);
+
   return (
     <Container maxW={'1700px'} h={'100%'}>
       <CardContainer>
-        {currentCompany?.id && treeNode?.length > 0 ? (
+        {treeNode?.length > 0 ? (
           <>
             <RowContainer
-              company={currentCompany}
               filter={filter}
               filterByAlert={filterByAlert}
               filterByThunderbolt={filterByThunderbolt}
@@ -52,15 +54,15 @@ export const MainContent = ({
             >
               <CardContainer padding={'0'}>
                 <TreeNodeContent
-                  changeCurrentAsset={changeCurrentAsset}
+                  changeCurrentAsset={assets.updateAsset}
                   filterBySearch={filterBySearch}
-                  currentAsset={currentAsset}
+                  currentAsset={assets.currentAsset}
                   treeNode={treeNode}
                 />
               </CardContainer>
 
               <CardContainer padding={'0'}>
-                <AssetDetails currentAsset={currentAsset} />
+                <AssetDetails currentAsset={assets.currentAsset} />
               </CardContainer>
             </Grid>
           </>

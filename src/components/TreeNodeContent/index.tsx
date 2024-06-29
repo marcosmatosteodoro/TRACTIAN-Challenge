@@ -7,7 +7,7 @@ import { TreeItens } from '../TreeItens';
 
 type TreeNodeContentProps = {
   treeNode: TreeNode[];
-  currentAsset: Asset;
+  currentAsset: Asset | null;
   changeCurrentAsset: (id: string) => void;
   filterBySearch: (text: string) => void;
 };

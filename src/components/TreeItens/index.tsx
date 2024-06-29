@@ -6,7 +6,7 @@ import { TreeItem } from '../TreeItem';
 type TreeItensProps = {
   treeNode: TreeNode[];
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Asset;
+  currentAsset: Asset | null;
 };
 
 const renderTreeItems = ({
@@ -28,7 +28,7 @@ const renderTreeItems = ({
       key={getId(item)}
       item={item}
       changeCurrentAsset={changeCurrentAsset}
-      currentAsset={currentAsset}
+      isActive={!!currentAsset?.id && item.asset?.id === currentAsset?.id}
     >
       {item?.childrens?.length > 0 &&
         renderTreeItems({

@@ -6,11 +6,11 @@ import { BoltIcon, ElipseIcon } from '../icons';
 import { AssetDetaillsContent, AssetDetaillsTop } from './components';
 
 type AssetDetailsProps = {
-  currentAsset: Asset;
+  currentAsset: Asset | null;
 };
 
 export const AssetDetails = ({ currentAsset }: AssetDetailsProps) => {
-  const choiceStatus = (asset: Asset) => {
+  const choiceStatus = (asset: AssetDetailsProps['currentAsset']) => {
     const size = '8px';
 
     if (!asset?.id) {
@@ -52,7 +52,6 @@ export const AssetDetails = ({ currentAsset }: AssetDetailsProps) => {
   return (
     <Box minH={'500px'} p={0} m={0}>
       <AssetDetaillsTop statusIcon={statusIcon} title={currentAsset?.name} />
-
       <AssetDetaillsContent />
     </Box>
   );

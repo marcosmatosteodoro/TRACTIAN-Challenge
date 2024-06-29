@@ -3,7 +3,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 
 type AssetDetaillsTopProps = {
-  title: string;
+  title: string | undefined;
   statusIcon: JSX.Element;
 };
 
