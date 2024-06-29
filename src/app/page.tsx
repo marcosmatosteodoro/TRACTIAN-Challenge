@@ -20,13 +20,11 @@ export default function Home() {
   } = useTreeNode({ application });
 
   const {
-    companies,
     currentCompany,
     currentAsset,
     assets,
     locations,
     treeNode,
-    updateCurrentCompany,
     updateCurrentAsset,
   } = application;
 
@@ -63,7 +61,7 @@ export default function Home() {
         top="0"
         zIndex="10"
       >
-        <Header companies={companies} update={updateCurrentCompany} />
+        <Header />
       </GridItem>
 
       <GridItem m="8px" p={0} area={'main'} as="main">
