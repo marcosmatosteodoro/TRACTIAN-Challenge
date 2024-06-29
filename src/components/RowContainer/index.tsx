@@ -1,22 +1,23 @@
 'use client';
 
-import { Company, TreeNodeFilters } from '@/domain/models';
+import { TreeNodeFilters } from '@/domain/models';
+import useCompanies from '@/hooks/useCompanies';
 import { Flex, Text } from '@chakra-ui/react';
 import { SecondaryButton } from '../';
 
 type RowContainerProps = {
-  company: Company;
   filter: TreeNodeFilters;
   filterByAlert: () => void;
   filterByThunderbolt: () => void;
 };
 
 export const RowContainer = ({
-  company,
   filterByAlert,
   filterByThunderbolt,
   filter,
 }: RowContainerProps) => {
+  const { currentCompany } = useCompanies();
+
   return (
     <Flex justifyContent={'space-between'}>
       <Flex alignItems={'center'} gap={'7px'}>
@@ -36,7 +37,7 @@ export const RowContainer = ({
           textAlign={'center'}
           color={'#77818C'}
         >
-          / {company.name} Unit
+          / {currentCompany?.name} Unit
         </Text>
       </Flex>
 
