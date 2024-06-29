@@ -26,6 +26,10 @@ const useCompanies = (): UseCompaniesProps => {
   const { data, error, isLoading } = useQuery<CompanyState[], ApiError>(
     'companies',
     fetchCompanies,
+    {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
+    },
   );
 
   const updateCompanyMutation = useMutation(
