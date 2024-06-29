@@ -1,4 +1,4 @@
-import { Asset, TreeNode } from '@/domain/models';
+import { TreeNode } from '@/domain/models';
 import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Button, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ type TreeItemProps = {
   item: TreeNode;
   children?: React.ReactNode;
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Asset | null;
+  isActive: boolean;
 };
 
 type ChevronIconProps = {
@@ -51,26 +51,15 @@ const ChevronIcon = ({ isOpen, childrens }: ChevronIconProps) => {
 export const TreeItem = ({
   item,
   children,
-  currentAsset,
   changeCurrentAsset,
+  isActive,
 }: TreeItemProps) => {
   const { location, asset, childrens, startOpen } = item;
-
   const [isOpen, setIsOpen] = useState(startOpen);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const validation = !!currentAsset?.id && item.asset?.id === currentAsset.id;
-    setIsActive(validation);
-  }, [currentAsset, item]);
 
   useEffect(() => {
     setIsOpen(startOpen);
   }, [startOpen]);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
 
   const choiceIcon = ({
     location,
@@ -138,7 +127,7 @@ export const TreeItem = ({
     childrens: TreeItemProps['item']['childrens'],
   ) => {
     if (childrens.length > 0) {
-      return handleToggle;
+      return () => setIsOpen(!isOpen);
     } else {
       return () => changeCurrentAsset(asset?.id || '');
     }

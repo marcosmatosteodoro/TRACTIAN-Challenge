@@ -28,7 +28,7 @@ const renderTreeItems = ({
       key={getId(item)}
       item={item}
       changeCurrentAsset={changeCurrentAsset}
-      currentAsset={currentAsset}
+      isActive={!!currentAsset?.id && item.asset?.id === currentAsset?.id}
     >
       {item?.childrens?.length > 0 &&
         renderTreeItems({
