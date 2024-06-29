@@ -14,7 +14,7 @@ type TreeItemProps = {
   item: TreeNode;
   children?: React.ReactNode;
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Asset;
+  currentAsset: Asset | null;
 };
 
 type ChevronIconProps = {

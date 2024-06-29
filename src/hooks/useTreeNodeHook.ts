@@ -1,6 +1,5 @@
 'use client';
 
-import { AplicationContextType } from '@/context/AplicationContext';
 import {
   Asset,
   Location,
@@ -14,17 +13,17 @@ interface UseTreeNodeReturnType {
   filterByThunderbolt: () => void;
   filterByAlert: () => void;
   filterBySearch: (text: string) => void;
-  getTreeNode: () => void;
+  getTreeNode: (data: GetTreeNodeProps) => void;
   filter: TreeNodeFilters;
+  treeNode: TreeNode[];
 }
 
-type useTreeNodeProps = {
-  application: AplicationContextType;
+type GetTreeNodeProps = {
+  assets: Asset[] | null;
+  locations: Location[] | null;
 };
 
-const useTreeNode = ({
-  application,
-}: useTreeNodeProps): UseTreeNodeReturnType => {
+const useTreeNode = (): UseTreeNodeReturnType => {
   const [filter, setFilters] = useState<TreeNodeFilters>({
     thunderbolt: false,
     alert: false,
@@ -32,9 +31,13 @@ const useTreeNode = ({
   } as TreeNodeFilters);
 
   const [searchList, setSearchList] = useState<Asset[]>([] as Asset[]);
-  const { treeNode, locations, assets, updateTreeNode } = application;
+  const [treeNode, setTreeNode] = useState<TreeNode[]>([] as TreeNode[]);
 
-  const getTreeNode = () => {
+  const updateTreeNode = (data: TreeNode[]) => {
+    setTreeNode(data);
+  };
+
+  const getTreeNode = ({ locations, assets }: GetTreeNodeProps) => {
     updateTreeNode({} as TreeNode[]);
     setSearchList([] as Asset[]);
     setFilters({
@@ -42,6 +45,11 @@ const useTreeNode = ({
       thunderbolt: false,
       search: '',
     } as TreeNodeFilters);
+
+    if (!locations || !assets) {
+      console.error('locations or assets is null');
+      return;
+    }
 
     const treeNode = buildTreeNode(locations, assets);
     updateTreeNode(treeNode as TreeNode[]);
@@ -276,6 +284,7 @@ const useTreeNode = ({
     filterByAlert,
     filterBySearch,
     filter,
+    treeNode,
   };
 };
 

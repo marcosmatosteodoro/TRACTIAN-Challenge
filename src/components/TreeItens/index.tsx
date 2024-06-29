@@ -6,7 +6,7 @@ import { TreeItem } from '../TreeItem';
 type TreeItensProps = {
   treeNode: TreeNode[];
   changeCurrentAsset: (id: string) => void;
-  currentAsset: Asset;
+  currentAsset: Asset | null;
 };
 
 const renderTreeItems = ({

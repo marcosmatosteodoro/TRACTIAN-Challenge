@@ -18,10 +18,6 @@ export const TreeNodeContent = ({
   changeCurrentAsset,
   filterBySearch,
 }: TreeNodeContentProps) => {
-  if (!currentAsset) {
-    return null;
-  }
-
   return (
     <Box p={0} m={0} overflow={'auto'}>
       <SearchInput filterBySearch={filterBySearch} />

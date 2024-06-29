@@ -1,9 +1,8 @@
 'use client';
 
-import { useAplicationContext } from '@/context/AplicationContext';
-import useApi from '@/hooks/useApiHook';
 import useAssets from '@/hooks/useAssets';
 import useCompanies from '@/hooks/useCompanies';
+import useLocations from '@/hooks/useLocations';
 import useTreeNode from '@/hooks/useTreeNodeHook';
 import { Container, Grid } from '@chakra-ui/react';
 import { useEffect } from 'react';
@@ -14,13 +13,9 @@ import { RowContainer } from '../RowContainer';
 import { TreeNodeContent } from '../TreeNodeContent';
 
 export const MainContent = () => {
-  // NOVO
   const { currentCompany } = useCompanies();
-  const assets2 = useAssets(currentCompany);
-  //
-
-  const application = useAplicationContext();
-  const { bringCompanies, bringAssets, bringLocations } = useApi(application);
+  const assets = useAssets(currentCompany);
+  const locations = useLocations(currentCompany);
 
   const {
     getTreeNode,
@@ -28,27 +23,14 @@ export const MainContent = () => {
     filterBySearch,
     filterByThunderbolt,
     filter,
-  } = useTreeNode({ application });
-
-  const { currentAsset, assets, locations, treeNode, updateCurrentAsset } =
-    application;
+    treeNode,
+  } = useTreeNode();
 
   useEffect(() => {
-    bringCompanies();
-  }, []);
-
-  useEffect(() => {
-    if (currentCompany?.id) {
-      bringAssets(currentCompany.id);
-      bringLocations(currentCompany.id);
+    if (assets.data && locations.data) {
+      getTreeNode({ assets: assets.data, locations: locations.data });
     }
-  }, [currentCompany]);
-
-  useEffect(() => {
-    if (assets && locations) {
-      getTreeNode();
-    }
-  }, [assets, locations]);
+  }, [assets.data, locations.data]);
 
   return (
     <Container maxW={'1700px'} h={'100%'}>
@@ -72,15 +54,15 @@ export const MainContent = () => {
             >
               <CardContainer padding={'0'}>
                 <TreeNodeContent
-                  changeCurrentAsset={updateCurrentAsset}
+                  changeCurrentAsset={assets.updateAsset}
                   filterBySearch={filterBySearch}
-                  currentAsset={currentAsset}
+                  currentAsset={assets.currentAsset}
                   treeNode={treeNode}
                 />
               </CardContainer>
 
               <CardContainer padding={'0'}>
-                <AssetDetails currentAsset={currentAsset} />
+                <AssetDetails currentAsset={assets.currentAsset} />
               </CardContainer>
             </Grid>
           </>
