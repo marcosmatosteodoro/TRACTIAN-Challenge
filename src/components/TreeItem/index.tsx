@@ -170,10 +170,7 @@ export const TreeItem = ({
 
         <Text
           color={isActive ? '#ffffff' : '#17192D'}
-          px={'4px'}
-          fontSize={'14px'}
-          fontWeight={400}
-          lineHeight={'22px'}
+          variant={'treeItem'}
           data-testid="tree-item-text"
         >
           {location && location?.name}

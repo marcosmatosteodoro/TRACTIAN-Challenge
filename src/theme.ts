@@ -44,14 +44,42 @@ const theme = extendTheme({
     },
     Text: {
       variants: {
+        title: {
+          fontWeight: '600',
+          fontSize: '18px',
+          lineHeight: '28px',
+          color: '#24292F',
+        },
         primary: {
-          fontSize: 'lg',
-          fontWeight: 'bold',
-          color: 'brand.500',
+          fontWeight: '600',
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#24292F',
         },
         secondary: {
-          fontSize: 'md',
-          color: 'gray.600',
+          fontSize: '16px',
+          fontWeight: '400',
+          lineHeight: '24px',
+          color: '#88929C',
+        },
+        treeItem: {
+          fontSize: '14px',
+          fontWeight: 400,
+          lineHeight: '22px',
+          px: '4px',
+        },
+        subtitleBlod: {
+          fontSize: '20px',
+          fontWeight: 600,
+          lineHeight: '28px',
+          color: '#24292F',
+        },
+        subtitle: {
+          fontSize: '14px',
+          fontWeight: 400,
+          lineHeight: '20px',
+          textAlign: 'center',
+          color: '#77818C',
         },
       },
     },

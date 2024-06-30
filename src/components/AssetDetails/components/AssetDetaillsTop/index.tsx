@@ -21,14 +21,7 @@ export const AssetDetaillsTop = ({
       alignItems={'center'}
       gap={'8px'}
     >
-      <Text
-        fontWeight={'600'}
-        fontSize={'18px'}
-        lineHeight={'28px'}
-        color={'#24292F'}
-      >
-        {title}
-      </Text>
+      <Text variant="title">{title}</Text>
       {statusIcon}
     </Flex>
   );

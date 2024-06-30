@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Circle, Divider, Flex, Grid } from '@chakra-ui/react';
+import { Box, Circle, Divider, Flex, Grid, Text } from '@chakra-ui/react';
 import { MdOutlineRouterIcon, WifiTetheringIcon } from '../../../';
 import { GroupAssetText } from '../GroupAssetText';
 
@@ -27,7 +27,7 @@ export const AssetDetaillsContent = () => {
           justifyContent={'center'}
         >
           <GroupAssetText title={'Tipo de Equipamenteo'}>
-            Motor Elétrico (Trifásico)
+            <Text variant="secondary">Motor Elétrico (Trifásico)</Text>
           </GroupAssetText>
 
           <Divider color={'#E3EAEF'} bg={'#E3EAEF'} />
@@ -36,7 +36,7 @@ export const AssetDetaillsContent = () => {
             <Circle bg={'#2188FF'} size={'24px'} color={'white'}>
               E
             </Circle>
-            Elétrica
+            <Text variant="secondary">Elétrica</Text>
           </GroupAssetText>
         </Flex>
       </Grid>
@@ -46,12 +46,12 @@ export const AssetDetaillsContent = () => {
       <Flex>
         <GroupAssetText title={'Sensor'}>
           <WifiTetheringIcon w={'20px'} h={'20px'} />
-          HIO4510
+          <Text variant="secondary">HIO4510</Text>
         </GroupAssetText>
 
         <GroupAssetText title={'Receptor'}>
           <MdOutlineRouterIcon w={'20px'} h={'20px'} />
-          EUH4R27
+          <Text variant="secondary">EUH4R27</Text>
         </GroupAssetText>
       </Flex>
     </Grid>

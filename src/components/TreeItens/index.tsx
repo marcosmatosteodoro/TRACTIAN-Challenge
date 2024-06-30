@@ -57,14 +57,7 @@ export const TreeItens = (props: TreeItensProps) => {
         renderTreeItems(props)
       ) : (
         <Box>
-          <Text
-            fontSize={'16px'}
-            fontWeight={'400'}
-            lineHeight={'24px'}
-            color={'#88929C'}
-          >
-            No items found
-          </Text>
+          <Text variant={'secondary'}>No items found</Text>
         </Box>
       )}
     </Box>

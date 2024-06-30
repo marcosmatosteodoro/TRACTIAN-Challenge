@@ -21,24 +21,9 @@ export const RowContainer = ({
   return (
     <Flex justifyContent={'space-between'}>
       <Flex alignItems={'center'} gap={'7px'}>
-        <Text
-          fontSize={'20px'}
-          fontWeight={600}
-          lineHeight={'28px'}
-          color={'#24292F'}
-        >
-          Ativos
-        </Text>
+        <Text variant="subtitleBlod">Ativos</Text>
 
-        <Text
-          fontSize={'14px'}
-          fontWeight={400}
-          lineHeight={'20px'}
-          textAlign={'center'}
-          color={'#77818C'}
-        >
-          / {currentCompany?.name} Unit
-        </Text>
+        <Text variant="subtitle">/ {currentCompany?.name} Unit</Text>
       </Flex>
 
       <Flex gap={'8px'}>
