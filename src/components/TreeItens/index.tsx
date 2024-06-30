@@ -52,7 +52,7 @@ export const TreeItens = (props: TreeItensProps) => {
   }, [props.treeNode]);
 
   return (
-    <Box px={'8px'} py={'10px'}>
+    <Box px={'8px'} py={'10px'} maxH={'500px'} overflow={'auto'}>
       {findItem ? (
         renderTreeItems(props)
       ) : (
