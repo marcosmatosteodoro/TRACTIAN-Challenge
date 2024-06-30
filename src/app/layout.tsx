@@ -1,5 +1,5 @@
+import ChakraProviderWrapper from '@/providers/ChakraProviderWrapper';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
-import { ChakraProvider } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body>
         <ReactQueryProvider>
-          <ChakraProvider>{children}</ChakraProvider>
+          <ChakraProviderWrapper>{children}</ChakraProviderWrapper>
         </ReactQueryProvider>
       </body>
     </html>
