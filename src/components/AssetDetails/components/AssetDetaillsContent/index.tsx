@@ -30,10 +30,10 @@ export const AssetDetaillsContent = () => {
             <Text variant="secondary">Motor Elétrico (Trifásico)</Text>
           </GroupAssetText>
 
-          <Divider color={'#E3EAEF'} bg={'#E3EAEF'} />
+          <Divider />
 
           <GroupAssetText title={'Responsáveis'}>
-            <Circle bg={'#2188FF'} size={'24px'} color={'white'}>
+            <Circle bg={'primary'} size={'24px'} color={'white'}>
               E
             </Circle>
             <Text variant="secondary">Elétrica</Text>
@@ -41,7 +41,7 @@ export const AssetDetaillsContent = () => {
         </Flex>
       </Grid>
 
-      <Divider color={'#E3EAEF'} bg={'#E3EAEF'} />
+      <Divider />
 
       <Flex>
         <GroupAssetText title={'Sensor'}>

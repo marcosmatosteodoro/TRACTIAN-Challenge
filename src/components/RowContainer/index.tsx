@@ -33,7 +33,7 @@ export const RowContainer = ({
           leftIcon={
             <Icon
               as={ThunderboltIcon}
-              color={filter.thunderbolt ? '#ffffff' : '#2188FF'}
+              color={filter.thunderbolt ? 'white' : 'primary'}
               w={'16px'}
               h={'16px'}
               m={0}
@@ -49,7 +49,7 @@ export const RowContainer = ({
           variant="secondary"
           leftIcon={
             <InfoIcon
-              color={filter.alert ? '#ffffff' : '#2188FF'}
+              color={filter.alert ? 'white' : 'primary'}
               w={'16px'}
               h={'16px'}
               m={0}

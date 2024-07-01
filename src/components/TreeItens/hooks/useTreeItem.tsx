@@ -42,7 +42,7 @@ export const useTreeItem = ({
     return (
       <CodepenIcon
         data-testid="codepen-icon"
-        color={isActive ? '#ffffff' : '#2188FF'}
+        color={isActive ? 'white' : 'primary'}
         w={size}
         h={size}
         ml={1}

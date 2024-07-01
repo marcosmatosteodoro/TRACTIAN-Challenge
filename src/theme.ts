@@ -22,20 +22,37 @@ const theme = extendTheme({
       800: '#005885',
       900: '#003f5e',
     },
+    tractianBlue: '#17192D',
+    white: '#ffffff',
+    primary: '#2188FF',
+    primaryBlod: '#023B78',
+    gray: '#D8DFE6',
+    dividerGray: '#E3EAEF',
+    textTilte: '#24292F',
+    textSubTilte: '#77818C',
+    textInfo: '#88929C',
+    placeholder: '#C1C9D2',
+    success: '#52C41A',
+    danger: '#ED3833',
   },
   components: {
+    Divider: {
+      baseStyle: {
+        bg: 'dividerGray',
+      },
+    },
     Button: {
       variants: {
         company: (props: any) => ({
-          bg: props.isActive ? '#2188FF' : '#023B78',
-          color: '#FFFFFF',
+          bg: props.isActive ? 'primary' : 'primaryBlod',
+          color: 'white',
           _hover: {
-            bg: '#2188FF',
+            bg: 'primary',
             opacity: 0.9,
           },
         }),
         treeItem: (props: any) => ({
-          bg: props.isActive ? '#2188FF' : '#ffffff',
+          bg: props.isActive ? 'primary' : 'white',
           alignItems: 'center',
           p: 0,
           w: 'full',
@@ -50,7 +67,7 @@ const theme = extendTheme({
                 bottom: '-2px',
                 height: '1px',
                 width: '100%',
-                bg: props.isActive ? '#ffffff' : '#2188FF',
+                bg: props.isActive ? 'white' : 'primary',
               },
             },
           },
@@ -58,17 +75,17 @@ const theme = extendTheme({
         secondary: (props: any) => ({
           borderRadius: '3px',
           borderWidth: '1px',
-          borderColor: '#D8DFE6',
+          borderColor: 'gray',
           p: '6px, 16px, 6px, 14px',
           gap: '6px',
-          bg: props.isActive ? '#2188FF' : '#ffffff',
+          bg: props.isActive ? 'primary' : 'white',
           fontSize: '14px',
           fontWeight: 600,
           lineHeight: '20px',
-          color: props.isActive ? '#ffffff' : '#77818C',
+          color: props.isActive ? 'white' : 'textSubTilte',
           _hover: {
-            bg: '#77818C',
-            color: '#ffffff',
+            bg: 'gray',
+            color: 'white',
           },
           sx: {
             span: {
@@ -84,19 +101,19 @@ const theme = extendTheme({
           fontWeight: '600',
           fontSize: '18px',
           lineHeight: '28px',
-          color: '#24292F',
+          color: 'textTilte',
         },
         primary: {
           fontWeight: '600',
           fontSize: '16px',
           lineHeight: '24px',
-          color: '#24292F',
+          color: 'textTilte',
         },
         secondary: {
           fontSize: '16px',
           fontWeight: '400',
           lineHeight: '24px',
-          color: '#88929C',
+          color: 'textInfo',
         },
         treeItem: {
           fontSize: '14px',
@@ -108,14 +125,14 @@ const theme = extendTheme({
           fontSize: '20px',
           fontWeight: 600,
           lineHeight: '28px',
-          color: '#24292F',
+          color: 'textTilte',
         },
         subtitle: {
           fontSize: '14px',
           fontWeight: 400,
           lineHeight: '20px',
           textAlign: 'center',
-          color: '#77818C',
+          color: 'textSubTilte',
         },
         button: {
           display: { base: 'none', md: 'block' },

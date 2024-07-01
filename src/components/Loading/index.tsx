@@ -5,7 +5,10 @@ type LoadingProps = {
   size?: string;
 };
 
-export const Loading = ({ color = 'blue.500', size = 'xl' }: LoadingProps) => {
+export const Loading = ({
+  color = 'tractianBlue',
+  size = 'xl',
+}: LoadingProps) => {
   return (
     <Flex
       direction="column"

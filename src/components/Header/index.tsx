@@ -23,7 +23,7 @@ export const Header = () => {
 
       <Flex gap={'10px'}>
         {isLoading ? (
-          <Loading color={'#fff'} size={'md'} />
+          <Loading color={'white'} size={'md'} />
         ) : (
           data?.map((company) => (
             <Button

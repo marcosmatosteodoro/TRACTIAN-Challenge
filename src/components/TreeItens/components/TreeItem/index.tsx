@@ -35,7 +35,7 @@ export const TreeItem = ({
         {typeIcon}
 
         <Text
-          color={isActive ? '#ffffff' : '#17192D'}
+          color={isActive ? 'white' : 'tractianBlue'}
           variant={'treeItem'}
           data-testid="tree-item-text"
         >

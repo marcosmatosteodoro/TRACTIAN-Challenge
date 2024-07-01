@@ -9,11 +9,11 @@ export default function Home() {
       templateAreas={`"header header" "main main"`}
       gridTemplateRows={'75px 1fr'}
       minH={'100vh'}
-      bg={'#D8DFE6'}
+      bg={'gray'}
     >
       <GridItem
         p="0"
-        bg="#17192D"
+        bg="tractianBlue"
         area={'header'}
         as="header"
         position="sticky"

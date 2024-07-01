@@ -17,7 +17,7 @@ export const SearchInput = ({ filterBySearch }: SearchInputProps) => {
     <Flex
       w={'100%'}
       h={'45px'}
-      borderBottomColor={'#D8DFE6'}
+      borderBottomColor={'gray'}
       borderBottomWidth={'1px'}
       alignItems={'center'}
       justifyContent={'space-between'}
@@ -26,11 +26,11 @@ export const SearchInput = ({ filterBySearch }: SearchInputProps) => {
         variant="outline"
         placeholder="Buscar Ativo ou Local"
         border={0}
-        color={'#17192D'}
+        color={'tractianBlue'}
         w={'100%'}
         h={'100%'}
         onChange={handleChange}
-        sx={{ '::placeholder': { color: '#C1C9D2' } }}
+        sx={{ '::placeholder': { color: 'placeholder' } }}
       />
 
       <Box p={'9px'}>

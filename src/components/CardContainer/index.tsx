@@ -13,8 +13,8 @@ export const CardContainer = ({ children, padding }: CardContainerProps) => (
       p={padding ?? '16px'}
       m={0}
       gap={'12px'}
-      borderColor={'#D8DFE6'}
-      bg={'#fff'}
+      borderColor={'gray'}
+      bg={'white'}
       h={'100%'}
       w={'100%'}
       data-testid="card-container"
