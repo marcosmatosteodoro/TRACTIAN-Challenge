@@ -48,8 +48,7 @@ export const RowContainer = ({
         <Button
           variant="secondary"
           leftIcon={
-            <Icon
-              as={InfoIcon}
+            <InfoIcon
               color={filter.alert ? '#ffffff' : '#2188FF'}
               w={'16px'}
               h={'16px'}
