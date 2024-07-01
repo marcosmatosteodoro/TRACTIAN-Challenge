@@ -2,8 +2,9 @@
 
 import { TreeNodeFilters } from '@/domain/models';
 import useCompanies from '@/hooks/useCompanies';
-import { Flex, Text } from '@chakra-ui/react';
-import { SecondaryButton } from '../';
+import { InfoIcon } from '@chakra-ui/icons';
+import { Button, Flex, Icon, Text } from '@chakra-ui/react';
+import { ThunderboltIcon } from '../';
 
 type RowContainerProps = {
   filter: TreeNodeFilters;
@@ -27,21 +28,39 @@ export const RowContainer = ({
       </Flex>
 
       <Flex gap={'8px'}>
-        <SecondaryButton
-          icon={'thunderbolt'}
+        <Button
+          variant="secondary"
+          leftIcon={
+            <Icon
+              as={ThunderboltIcon}
+              color={filter.thunderbolt ? '#ffffff' : '#2188FF'}
+              w={'16px'}
+              h={'16px'}
+              m={0}
+            />
+          }
           onClick={filterByThunderbolt}
-          active={filter.thunderbolt}
+          isActive={filter.thunderbolt}
         >
-          Sensor de Energia
-        </SecondaryButton>
+          <Text variant={'button'}>Sensor de Energia</Text>
+        </Button>
 
-        <SecondaryButton
-          icon={'infoIcon'}
+        <Button
+          variant="secondary"
+          leftIcon={
+            <Icon
+              as={InfoIcon}
+              color={filter.alert ? '#ffffff' : '#2188FF'}
+              w={'16px'}
+              h={'16px'}
+              m={0}
+            />
+          }
           onClick={filterByAlert}
-          active={filter.alert}
+          isActive={filter.alert}
         >
-          Critico
-        </SecondaryButton>
+          <Text variant={'button'}>Critico</Text>
+        </Button>
       </Flex>
     </Flex>
   );

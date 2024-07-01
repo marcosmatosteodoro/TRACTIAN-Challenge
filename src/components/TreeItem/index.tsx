@@ -143,28 +143,7 @@ export const TreeItem = ({
 
   return (
     <Box>
-      <Button
-        alignItems="center"
-        onClick={click}
-        p={0}
-        w={'full'}
-        justifyContent={'flex-start'}
-        bg={isActive ? '#2188FF' : '#ffffff'}
-        _hover={{
-          '& > p': {
-            position: 'relative',
-            _after: {
-              content: '""',
-              position: 'absolute',
-              left: 0,
-              bottom: '-2px',
-              height: '1px',
-              width: '100%',
-              bg: isActive ? '#ffffff' : '#2188FF',
-            },
-          },
-        }}
-      >
+      <Button variant="treeItem" onClick={click} isActive={isActive}>
         <ChevronIcon isOpen={isOpen} childrens={childrens} />
         {typeIcon}
 

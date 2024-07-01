@@ -1,8 +1,8 @@
 'use client';
 
 import useCompanies from '@/hooks/useCompanies';
-import { Box, Flex } from '@chakra-ui/react';
-import { CompanyButton, Loading, LogoIcon } from '../';
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
+import { GoldIcon, Loading, LogoIcon } from '../';
 
 export const Header = () => {
   const { data, isLoading, updateCompany } = useCompanies();
@@ -26,14 +26,25 @@ export const Header = () => {
           <Loading color={'#fff'} size={'md'} />
         ) : (
           data?.map((company) => (
-            <CompanyButton
+            <Button
               key={company.id}
-              active={company.current}
-              click={() => updateCompany(company.id)}
-              data-testid="company-button"
+              isActive={company.current}
+              variant="company"
+              onClick={() => updateCompany(company.id)}
+              leftIcon={
+                <Icon
+                  as={GoldIcon}
+                  h={'16px'}
+                  w={'16px'}
+                  display={{ base: 'none', md: 'block' }}
+                  m={{ base: '0px', md: 'initial' }}
+                />
+              }
             >
-              {company.name}
-            </CompanyButton>
+              <Text ms={1} variant="button">
+                {company.name} Unit
+              </Text>
+            </Button>
           ))
         )}
       </Flex>

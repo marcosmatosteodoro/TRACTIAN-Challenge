@@ -26,20 +26,56 @@ const theme = extendTheme({
   components: {
     Button: {
       variants: {
-        solid: {
-          bg: 'brand.500',
-          color: 'white',
+        company: (props: any) => ({
+          bg: props.isActive ? '#2188FF' : '#023B78',
+          color: '#FFFFFF',
           _hover: {
-            bg: 'brand.600',
+            bg: '#2188FF',
+            opacity: 0.9,
           },
-        },
-        outline: {
-          borderColor: 'brand.500',
-          color: 'brand.500',
+        }),
+        treeItem: (props: any) => ({
+          bg: props.isActive ? '#2188FF' : '#ffffff',
+          alignItems: 'center',
+          p: 0,
+          w: 'full',
+          justifyContent: 'flex-start',
           _hover: {
-            bg: 'brand.50',
+            '& > p': {
+              position: 'relative',
+              _after: {
+                content: '""',
+                position: 'absolute',
+                left: 0,
+                bottom: '-2px',
+                height: '1px',
+                width: '100%',
+                bg: props.isActive ? '#ffffff' : '#2188FF',
+              },
+            },
           },
-        },
+        }),
+        secondary: (props: any) => ({
+          borderRadius: '3px',
+          borderWidth: '1px',
+          borderColor: '#D8DFE6',
+          p: '6px, 16px, 6px, 14px',
+          gap: '6px',
+          bg: props.isActive ? '#2188FF' : '#ffffff',
+          fontSize: '14px',
+          fontWeight: 600,
+          lineHeight: '20px',
+          color: props.isActive ? '#ffffff' : '#77818C',
+          _hover: {
+            bg: '#77818C',
+            color: '#ffffff',
+          },
+          sx: {
+            span: {
+              margin: { base: 0, md: 'initial' },
+            },
+          },
+        }),
       },
     },
     Text: {
@@ -80,6 +116,9 @@ const theme = extendTheme({
           lineHeight: '20px',
           textAlign: 'center',
           color: '#77818C',
+        },
+        button: {
+          display: { base: 'none', md: 'block' },
         },
       },
     },
