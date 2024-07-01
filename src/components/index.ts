@@ -6,7 +6,6 @@ export * from './Loading';
 export * from './MainContent';
 export * from './RowContainer';
 export * from './SearchInput';
-export * from './TreeItem';
 export * from './TreeItens';
 export * from './TreeNodeContent';
 
